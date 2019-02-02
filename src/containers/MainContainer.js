@@ -8,6 +8,7 @@ import ShoeContainer from './ShoeContainer'
 import ClothingArticle from '../components/ClothingArticle'
 import {connect} from 'react-redux'
 import {clothes} from '../apiURLs'
+import '../App.css';
 
 class MainContainer extends Component {
 
@@ -35,10 +36,10 @@ class MainContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <HatContainer/>
         <TopContainer/>
-        <JacketContainer />
+        <JacketContainer/>
         <BottomContainer/>
         <ShoeContainer/>
       </div>

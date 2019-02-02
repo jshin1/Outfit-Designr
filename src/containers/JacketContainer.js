@@ -14,7 +14,7 @@ class JacketContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className='jackets'>
         {this.showJackets()}
       </div>
     );

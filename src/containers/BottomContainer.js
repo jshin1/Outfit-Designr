@@ -14,7 +14,7 @@ class BottomContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className='bottoms'>
         {this.showBottoms()}
       </div>
     );

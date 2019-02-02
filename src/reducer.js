@@ -9,8 +9,6 @@ const initialState = {
 
 function reducer(state=initialState, action) {
   switch(action.type) {
-    case 'FETCH_CLOTHES':
-      return {...state, clothes: [action.payload]}
     case 'FETCH_HATS':
       return {...state, hats: [...state.hats, action.payload]}
     case 'FETCH_TOPS':

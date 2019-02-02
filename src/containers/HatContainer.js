@@ -14,7 +14,7 @@ class HatContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className='hats'>
         {this.showHats()}
       </div>
     );

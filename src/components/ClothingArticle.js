@@ -4,50 +4,56 @@ class ClothingArticle extends Component {
 
   showClothing = () => {
     if (this.props.hat) {
-      return (
-        <div>
-          <h2>{this.props.hat[0].brand}</h2>
-          <img src={this.props.hat[0].image_url} />
-        </div>
-      )
+      return this.props.hat.map(h => {
+          return (
+            <div className='tile'>
+              <h2>{h.brand}</h2>
+              <img src={h.image_url} />
+            </div>
+          )
+        })
     } else if (this.props.top) {
-      return (
-        <div>
-          <h2>{this.props.top[0].brand}</h2>
-          <img src={this.props.top[0].image_url} />
-        </div>
-      )
+      return this.props.top.map(t => {
+          return (
+            <div className='tile'>
+              <h2>{t.brand}</h2>
+              <img src={t.image_url} />
+            </div>
+          )
+        })
     } else if (this.props.jacket) {
-      return (
-        <div>
-          <h2>{this.props.jacket[0].brand}</h2>
-          <img src={this.props.jacket[0].image_url} />
-        </div>
-      )
+      return this.props.jacket.map(j => {
+          return (
+            <div className='tile'>
+              <h2>{j.brand}</h2>
+              <img src={j.image_url} />
+            </div>
+          )
+        })
     } else if (this.props.bottom) {
-      return (
-        <div>
-          <h2>{this.props.bottom[0].brand}</h2>
-          <img src={this.props.bottom[0].image_url} />
-        </div>
-      )
+      return this.props.bottom.map(b => {
+          return (
+            <div className='tile'>
+              <h2>{b.brand}</h2>
+              <img src={b.image_url} />
+            </div>
+          )
+        })
     } else if (this.props.shoes) {
-      return (
-        <div>
-          <h2>{this.props.shoes[0].brand}</h2>
-          <img src={this.props.shoes[0].image_url} />
-        </div>
-      )
+      return this.props.shoes.map(s => {
+          return (
+            <div className='tile'>
+              <h2>{s.brand}</h2>
+              <img src={s.image_url} />
+            </div>
+          )
+        })
     }
   }
 
   render() {
     console.log(this.props);
-    return (
-      <div className='tile'>
-        {this.showClothing()}
-      </div>
-    );
+    return this.showClothing()
   }
 
 }
