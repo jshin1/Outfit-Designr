@@ -26,7 +26,7 @@ class ClothingArticle extends Component {
           return (
             <div className='tile'>
               <h2>{j.brand}</h2>
-              <img src={j.image_url} />
+              <img src={j.image_url} className='selected'/>
             </div>
           )
         })

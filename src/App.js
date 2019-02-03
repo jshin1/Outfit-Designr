@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Home from './components/Home'
 import MainContainer from './containers/MainContainer'
 import About from './components/About'
+import Icon from '@material-ui/core/Icon'
 
 class App extends Component {
   render() {
@@ -14,7 +15,9 @@ class App extends Component {
         <Router>
           <>
             <nav>
-              <Link to='/'>Home</Link>
+              <Link to='/'>
+                <i class="material-icons">home</i>
+              </Link>
               <Link to='/main'>Main</Link>
               <Link to='/about'>About</Link>
             </nav>

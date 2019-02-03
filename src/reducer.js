@@ -4,7 +4,10 @@ const initialState = {
   tops: [],
   jackets: [],
   bottoms: [],
-  shoes: []
+  shoes: [],
+  currentUserId: '',
+  currentUserName: '',
+  userInput: ''
 }
 
 function reducer(state=initialState, action) {
@@ -19,6 +22,10 @@ function reducer(state=initialState, action) {
       return {...state, bottoms: [...state.bottoms, action.payload]}
     case 'FETCH_SHOES':
       return {...state, shoes: [action.payload]}
+    case 'LOGIN_INPUT':
+      return {...state, userInput: action.payload}
+    case 'LOGIN_SUBMIT':
+      return {...state, currentUserId: action.id, currentUserName: action.first_name}
     default:
       return state
   }
