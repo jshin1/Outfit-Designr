@@ -1,12 +1,16 @@
 const initialState = {
-  clothes: [],
   hats: [],
   tops: [],
   jackets: [],
   bottoms: [],
   shoes: [],
-  currentUserId: '',
-  currentUserName: '',
+  myHats: [],
+  myTops: [],
+  myJackets: [],
+  myBottoms: [],
+  myShoes: [],
+  currentUserId: null,
+  currentUserName: null,
   userInput: ''
 }
 
@@ -21,11 +25,23 @@ function reducer(state=initialState, action) {
     case 'FETCH_BOTTOMS':
       return {...state, bottoms: [...state.bottoms, action.payload]}
     case 'FETCH_SHOES':
-      return {...state, shoes: [action.payload]}
+      return {...state, shoes: [...state.shoes, action.payload]}
+    case 'ADD_HATS':
+      return {...state, myHats: [...state.myHats, action.payload]}
+    case 'ADD_TOPS':
+      return {...state, myTops: [...state.myTops, action.payload]}
+    case 'ADD_JACKETS':
+      return {...state, myJackets: [...state.myJackets, action.payload]}
+    case 'ADD_BOTTOMS':
+      return {...state, myBottoms: [...state.myBottoms, action.payload]}
+    case 'ADD_SHOES':
+      return {...state, myShoes: [...state.myShoes, action.payload]}
     case 'LOGIN_INPUT':
       return {...state, userInput: action.payload}
     case 'LOGIN_SUBMIT':
-      return {...state, currentUserId: action.id, currentUserName: action.first_name}
+      return {...state, currentUserId: action.id, currentUserName: action.name}
+    case 'LOG_OUT':
+      return {...state, currentUserId: action.payload, currentUserName: action.payload, userInput:action.payload}
     default:
       return state
   }

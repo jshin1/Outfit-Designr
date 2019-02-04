@@ -68,3 +68,7 @@ img {
  min-height: 50%;
  z-index: -20;
 }
+
+.wheel {
+  max-height: 700px;
+}

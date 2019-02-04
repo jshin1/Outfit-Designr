@@ -7,7 +7,8 @@ class Login extends Component {
     fetch('http://localhost:3000/api/v1/users')
     .then(res => res.json())
     .then(data => {
-      let user = data.find(user => user.first_name === input)
+      let user = data.find(user => user.first_name == input)
+      console.log(data[0].first_name)
       if (user !== undefined) {
         this.props.loginSubmit(user.id, user.first_name)
       } else {
@@ -20,7 +21,7 @@ class Login extends Component {
     return (
       <div>
         <input onChange={this.props.loginInput} placeholder='Please enter username' value={this.props.userInput}/>
-        <button type='submit' onClick={() => this.loginUser(this.props.currentUserName)}>Login</button>
+        <button type='submit' onClick={() => this.loginUser(this.props.userInput)}>Login</button>
       </div>
     );
   }
