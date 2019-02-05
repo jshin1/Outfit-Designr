@@ -7,6 +7,14 @@ class ClothingArticle extends Component {
     event.target.className = 'selected';
     if (event.target.id == 'hat') {
       this.props.addHats(event)
+    } else if (event.target.id == 'top') {
+      this.props.addTops(event)
+    } else if (event.target.id == 'jacket') {
+      this.props.addJackets(event)
+    } else if (event.target.id == 'bottom') {
+      this.props.addBottoms(event)
+    } else if (event.target.id == 'shoes') {
+      this.props.addShoes(event)
     }
   }
 

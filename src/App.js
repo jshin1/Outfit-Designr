@@ -21,6 +21,7 @@ class App extends Component {
               <Link to='/'>
                 <i class="material-icons">home</i>
               </Link>
+              <Link to='/profile'>Profile</Link>
               <Link to='/main'>Main</Link>
               <Link to='/about'>About</Link>
             </nav>

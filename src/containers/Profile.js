@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import HatPicker from './HatPicker'
+import TopPicker from './TopPicker'
+import JacketPicker from './JacketPicker'
+import BottomPicker from './BottomPicker'
+import ShoePicker from './ShoePicker'
 
 class Profile extends Component {
 
@@ -14,6 +19,11 @@ class Profile extends Component {
         <h1>{`Welcome to your DESIGN PORTAL, ${this.props.currentUserName}`}</h1>
         <img className='wheel' src='https://1.bp.blogspot.com/-AxRd0J6IncI/Vqe0uEUjgjI/AAAAAAAAJOw/ANepkB3-2qo/s1600/astounding-color-wheel-analogous-color-scheme-new-at-homes-gallery-ideas.jpg' />
         <button type='submit' onClick={this.reroute}>Log Out</button>
+        <HatPicker />
+        <TopPicker />
+        <JacketPicker />
+        <BottomPicker />
+        <ShoePicker />
       </div>
 
     );
