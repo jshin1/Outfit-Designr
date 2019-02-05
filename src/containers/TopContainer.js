@@ -6,7 +6,6 @@ import {clothes} from '../apiURLs'
 class TopContainer extends Component {
 
   showTops = () => {
-    console.log(this.props.tops);
     return this.props.tops.map(top => {
       return <ClothingArticle top={top} />
     })

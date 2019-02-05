@@ -25,7 +25,7 @@ class App extends Component {
               <Link to='/main'>Main</Link>
               <Link to='/about'>About</Link>
             </nav>
-              <Route exact path="/" render={() => (this.props.currentUserId !== null ? (<Redirect to="/profile"/>) : (<Home/>))}/>
+              <Route exact path="/" render={() => (this.props.currentUserId !== null ? (<Redirect to="/main"/>) : (<Home/>))}/>
               <Route path='/profile' component={Profile} />
               <Route path='/main' component={MainContainer} />
               <Route path='/about' component={About} />

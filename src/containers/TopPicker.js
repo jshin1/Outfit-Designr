@@ -14,15 +14,16 @@ class TopPicker extends Component {
   }
 
   showMyTop = () => {
-    return <img src={this.props.myTops[this.state.index]} />
+    this.props.displayTop(this.props.myTops[this.state.index])
+    return <img src={this.props.myTops[this.state.index].image_url} />
   }
 
   render() {
     return (
       <div>
-      <button>Previous</button>
-      {this.showMyTop()}
-      <button onClick={this.rotateTops}>Next</button>
+        <button>Previous</button>
+        {this.showMyTop()}
+        <button onClick={this.rotateTops}>Next</button>
       </div>
     );
   }
@@ -31,8 +32,15 @@ class TopPicker extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    myTops: state.myTops
+    myTops: state.myTops,
+    currentTop: state.currentTop
   }
 }
 
-export default connect(mapStateToProps, null)(TopPicker);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    displayTop: (data) => dispatch({type: 'DISPLAY_TOP', payload: data})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopPicker);

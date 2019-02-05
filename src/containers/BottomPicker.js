@@ -14,15 +14,16 @@ class BottomPicker extends Component {
   }
 
   showMyBottom = () => {
-    return <img src={this.props.myBottoms[this.state.index]} />
+    this.props.displayBottom(this.props.myBottoms[this.state.index])
+    return <img src={this.props.myBottoms[this.state.index].image_url} />
   }
 
   render() {
     return (
       <div>
-      <button>Previous</button>
-      {this.showMyBottom()}
-      <button onClick={this.rotateBottoms}>Next</button>
+        <button>Previous</button>
+        {this.showMyBottom()}
+        <button onClick={this.rotateBottoms}>Next</button>
       </div>
     );
   }
@@ -31,8 +32,15 @@ class BottomPicker extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    myBottoms: state.myBottoms
+    myBottoms: state.myBottoms,
+    currentBottom: state.currentBottom
   }
 }
 
-export default connect(mapStateToProps, null)(BottomPicker);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    displayBottom: (data) => dispatch({type: 'DISPLAY_BOTTOM', payload: data})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BottomPicker);

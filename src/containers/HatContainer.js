@@ -7,7 +7,6 @@ class HatContainer extends Component {
 
   showHats = () => {
     return this.props.hats.map(hat => {
-      console.log(this.props.hats);
       return <ClothingArticle hat={hat} />
     })
   }
@@ -19,7 +18,6 @@ class HatContainer extends Component {
       </div>
     );
   }
-
 }
 
 function mapStateToProps(state) {

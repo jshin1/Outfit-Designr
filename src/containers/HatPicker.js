@@ -14,7 +14,8 @@ class HatPicker extends Component {
   }
 
   showMyHat = () => {
-    return <img src={this.props.myHats[this.state.index]} />
+    this.props.displayHat(this.props.myHats[this.state.index])
+    return <img src={this.props.myHats[this.state.index].image_url} />
   }
 
   render() {
@@ -31,8 +32,15 @@ class HatPicker extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    myHats: state.myHats
+    myHats: state.myHats,
+    currentHat: state.currentHat
   }
 }
 
-export default connect(mapStateToProps, null)(HatPicker);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    displayHat: (data) => dispatch({type: 'DISPLAY_HAT', payload: data})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HatPicker);

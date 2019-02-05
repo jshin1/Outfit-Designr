@@ -3,18 +3,18 @@ import {connect} from 'react-redux';
 
 class ClothingArticle extends Component {
 
-  selectClothing = (event) => {
+  selectClothing = (event, data) => {
     event.target.className = 'selected';
     if (event.target.id == 'hat') {
-      this.props.addHats(event)
+      this.props.addHats(data)
     } else if (event.target.id == 'top') {
-      this.props.addTops(event)
+      this.props.addTops(data)
     } else if (event.target.id == 'jacket') {
-      this.props.addJackets(event)
+      this.props.addJackets(data)
     } else if (event.target.id == 'bottom') {
-      this.props.addBottoms(event)
+      this.props.addBottoms(data)
     } else if (event.target.id == 'shoes') {
-      this.props.addShoes(event)
+      this.props.addShoes(data)
     }
   }
 
@@ -23,8 +23,8 @@ class ClothingArticle extends Component {
       return this.props.hat.map(h => {
           return (
             <div className='tile'>
-              <h2>{h.brand}</h2>
-              <img src={h.image_url} id="hat" onClick={(event) => this.selectClothing(event)}/>
+              <h2>{h.name}</h2>
+              <img src={h.image_url} id="hat" onClick={(event) => this.selectClothing(event, h)}/>
             </div>
           )
         })
@@ -32,8 +32,8 @@ class ClothingArticle extends Component {
       return this.props.top.map(t => {
           return (
             <div className='tile'>
-              <h2>{t.brand}</h2>
-              <img src={t.image_url} id="top" onClick={(event) => this.selectClothing(event)} />
+              <h2>{t.name}</h2>
+              <img src={t.image_url} id="top" onClick={(event) => this.selectClothing(event, t)} />
             </div>
           )
         })
@@ -41,8 +41,8 @@ class ClothingArticle extends Component {
       return this.props.jacket.map(j => {
           return (
             <div className='tile'>
-              <h2>{j.brand}</h2>
-              <img src={j.image_url} id="jacket" onClick={(event) => this.selectClothing(event)} className='selected'/>
+              <h2>{j.name}</h2>
+              <img src={j.image_url} id="jacket" onClick={(event) => this.selectClothing(event, j)} />
             </div>
           )
         })
@@ -50,8 +50,8 @@ class ClothingArticle extends Component {
       return this.props.bottom.map(b => {
           return (
             <div className='tile'>
-              <h2>{b.brand}</h2>
-              <img src={b.image_url} id="bottom" onClick={(event) => this.selectClothing(event)}/>
+              <h2>{b.name}</h2>
+              <img src={b.image_url} id="bottom" onClick={(event) => this.selectClothing(event, b)}/>
             </div>
           )
         })
@@ -59,8 +59,8 @@ class ClothingArticle extends Component {
       return this.props.shoes.map(s => {
           return (
             <div className='tile'>
-              <h2>{s.brand}</h2>
-              <img src={s.image_url} id="shoes" onClick={(event) => this.selectClothing(event)}/>
+              <h2>{s.name}</h2>
+              <img src={s.image_url} id="shoes" onClick={(event) => this.selectClothing(event, s)}/>
             </div>
           )
         })
@@ -86,14 +86,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addHats: (event) => {
-      console.log(event.target.src)
-      return dispatch({type: 'ADD_HATS', payload: event.target.src })},
+    addHats: (data) => {
+      return dispatch({type: 'ADD_HATS', payload: data })},
 
-    addTops: (event) => dispatch({type: 'ADD_TOPS', payload: event.target.src }),
-    addJackets: (event) => dispatch({type: 'ADD_JACKETS', payload: event.target.src }),
-    addBottoms: (event) => dispatch({type: 'ADD_BOTTOMS', payload: event.target.src }),
-    addShoes: (event) => dispatch({type: 'ADD_SHOES', payload: event.target.src })
+    addTops: (data) => dispatch({type: 'ADD_TOPS', payload: data }),
+    addJackets: (data) => dispatch({type: 'ADD_JACKETS', payload: data }),
+    addBottoms: (data) => dispatch({type: 'ADD_BOTTOMS', payload: data }),
+    addShoes: (data) => dispatch({type: 'ADD_SHOES', payload: data })
   }
 }
 

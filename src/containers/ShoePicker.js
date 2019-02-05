@@ -14,15 +14,16 @@ class ShoePicker extends Component {
   }
 
   showMyShoes = () => {
-    return <img src={this.props.myShoes[this.state.index]} />
+    this.props.displayShoes(this.props.myShoes[this.state.index])
+    return <img src={this.props.myShoes[this.state.index].image_url} />
   }
 
   render() {
     return (
       <div>
-      <button>Previous</button>
-      {this.showMyShoes()}
-      <button onClick={this.rotateShoes}>Next</button>
+        <button>Previous</button>
+        {this.showMyShoes()}
+        <button onClick={this.rotateShoes}>Next</button>
       </div>
     );
   }
@@ -31,8 +32,15 @@ class ShoePicker extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    myShoes: state.myShoes
+    myShoes: state.myShoes,
+    currentShoes: state.currentShoes
   }
 }
 
-export default connect(mapStateToProps, null)(ShoePicker);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    displayShoes: (data) => dispatch({type: 'DISPLAY_SHOES', payload: data})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoePicker);

@@ -34,6 +34,10 @@ class MainContainer extends Component {
     })
   }
 
+  reroute = () => {
+    this.props.history.push('/profile')
+  }
+
   render() {
     return (
       <div className='container'>
@@ -42,6 +46,7 @@ class MainContainer extends Component {
         <JacketContainer/>
         <BottomContainer/>
         <ShoeContainer/>
+        <button onClick={this.reroute}>Add to my profile!</button>
       </div>
     );
   }

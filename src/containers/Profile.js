@@ -33,14 +33,18 @@ class Profile extends Component {
 const mapStateToProps = (state) => {
   return {
     currentUserId: state.currentUserId,
-    currentUserName: state.currentUserName
+    currentUserName: state.currentUserName,
+    myHats: state.myHats,
+    myTops: state.myTops,
+    myJackets: state.myJackets,
+    myBottoms: state.myBottoms,
+    myShoes: state.myShoes
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     logOut: () => {
-      console.log('hio');
       return dispatch({type: 'LOG_OUT', payload: null})}
   }
 }
