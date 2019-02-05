@@ -15,7 +15,11 @@ class TopPicker extends Component {
 
   showMyTop = () => {
     this.props.displayTop(this.props.myTops[this.state.index])
-    return <img src={this.props.myTops[this.state.index].image_url} />
+    return (
+      <div className='tile'>
+        <img src={this.props.myTops[this.state.index].image_url} />
+      </div>
+    )
   }
 
   render() {

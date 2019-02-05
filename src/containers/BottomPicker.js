@@ -15,7 +15,11 @@ class BottomPicker extends Component {
 
   showMyBottom = () => {
     this.props.displayBottom(this.props.myBottoms[this.state.index])
-    return <img src={this.props.myBottoms[this.state.index].image_url} />
+    return (
+      <div className='tile'>
+        <img src={this.props.myBottoms[this.state.index].image_url} />
+      </div>
+    )
   }
 
   render() {

@@ -15,7 +15,11 @@ class ShoePicker extends Component {
 
   showMyShoes = () => {
     this.props.displayShoes(this.props.myShoes[this.state.index])
-    return <img src={this.props.myShoes[this.state.index].image_url} />
+    return (
+      <div className='tile'>
+        <img src={this.props.myShoes[this.state.index].image_url} />
+      </div>
+    )
   }
 
   render() {

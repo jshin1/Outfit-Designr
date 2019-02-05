@@ -15,7 +15,11 @@ class JacketPicker extends Component {
 
   showMyJacket = () => {
     this.props.displayJacket(this.props.myJackets[this.state.index])
-    return <img src={this.props.myJackets[this.state.index].image_url} />
+    return (
+      <div className='tile'>
+        <img src={this.props.myJackets[this.state.index].image_url} />
+      </div>
+    )
   }
 
   render() {
