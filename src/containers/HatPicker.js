@@ -14,12 +14,15 @@ class HatPicker extends Component {
   }
 
   showMyHat = () => {
-    this.props.displayHat(this.props.myHats[this.state.index])
-    return (
-      <div className='tile'>
-        <img src={this.props.myHats[this.state.index].image_url} />
-      </div>
-    )
+    if (this.props.myHats.length > 0) {
+      console.log(this.props.myHats);
+      this.props.displayHat(this.props.myHats[this.state.index])
+      return (
+        <div className='tile'>
+          <img src={this.props.myHats[this.state.index].image_url} />
+        </div>
+      )
+    }
   }
 
   render() {

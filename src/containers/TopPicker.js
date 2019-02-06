@@ -14,12 +14,15 @@ class TopPicker extends Component {
   }
 
   showMyTop = () => {
-    this.props.displayTop(this.props.myTops[this.state.index])
-    return (
-      <div className='tile'>
-        <img src={this.props.myTops[this.state.index].image_url} />
-      </div>
-    )
+    if (this.props.myTops.length > 0) {
+      this.props.displayTop(this.props.myTops[this.state.index])
+      return (
+        <div className='tile'>
+          <img src={this.props.myTops[this.state.index].image_url} />
+        </div>
+      )
+    }
+
   }
 
   render() {

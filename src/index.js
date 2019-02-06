@@ -9,6 +9,8 @@ import {Provider} from 'react-redux'
 import reducer from './reducer'
 import {CLOTHES} from './apiURLs'
 
+import { BrowserRouter as Router} from 'react-router-dom'
+
 const store = createStore(reducer)
 
 

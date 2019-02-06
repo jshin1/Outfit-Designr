@@ -14,12 +14,14 @@ class JacketPicker extends Component {
   }
 
   showMyJacket = () => {
+    if (this.props.myJackets.length > 0) {
     this.props.displayJacket(this.props.myJackets[this.state.index])
     return (
       <div className='tile'>
         <img src={this.props.myJackets[this.state.index].image_url} />
       </div>
     )
+    }
   }
 
   render() {

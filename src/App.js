@@ -10,27 +10,33 @@ import About from './components/About'
 import Icon from '@material-ui/core/Icon'
 import Profile from './containers/Profile'
 
+import ButtonAppBar from './styles/ButtonAppBar'
+import PrimarySearchAppBar from './styles/PrimarySearchAppBar'
+
 class App extends Component {
+
+
   render() {
     console.log(this.props.currentUserId);
     return (
       <div className="App">
-        <Router>
-          <>
-            <nav>
-              <Link to='/'>
-                <i class="material-icons">home</i>
-              </Link>
-              <Link to='/profile'>Profile</Link>
-              <Link to='/main'>Main</Link>
-              <Link to='/about'>About</Link>
-            </nav>
-              <Route exact path="/" render={() => (this.props.currentUserId !== null ? (<Redirect to="/main"/>) : (<Home/>))}/>
-              <Route path='/profile' component={Profile} />
-              <Route path='/main' component={MainContainer} />
-              <Route path='/about' component={About} />
-          </>
-        </Router>
+          <PrimarySearchAppBar />
+          <Router>
+            <>
+              <nav>
+                <Link to='/'>
+                  <i class="material-icons">home</i>
+                </Link>
+                <Link to='/profile'>Profile</Link>
+                <Link to='/main'>Main</Link>
+                <Link to='/about'>About</Link>
+              </nav>
+                <Route exact path="/" render={() => (this.props.currentUserId !== null ? (<Redirect to="/main"/>) : (<Home/>))}/>
+                <Route path='/profile' component={Profile} />
+                <Route path='/main' component={MainContainer} />
+                <Route path='/about' component={About} />
+            </>
+          </Router>
       </div>
     );
   }

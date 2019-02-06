@@ -16,7 +16,12 @@ const initialState = {
   currentShoes: '',
   currentUserId: null,
   currentUserName: null,
-  userInput: ''
+  userInput: '',
+
+  colors: [],
+
+
+  hatColor: ''
 }
 
 function reducer(state=initialState, action) {
@@ -52,6 +57,9 @@ function reducer(state=initialState, action) {
       return {...state, currentBottom: action.payload}
     case 'DISPLAY_SHOES':
       return {...state, currentShoes: action.payload}
+
+    case 'SET_COLORS':
+      return {...state, colors: [...state.colors, action.payload]}
 
     case 'LOGIN_INPUT':
       return {...state, userInput: action.payload}

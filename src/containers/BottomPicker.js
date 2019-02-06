@@ -14,12 +14,14 @@ class BottomPicker extends Component {
   }
 
   showMyBottom = () => {
-    this.props.displayBottom(this.props.myBottoms[this.state.index])
-    return (
-      <div className='tile'>
-        <img src={this.props.myBottoms[this.state.index].image_url} />
-      </div>
-    )
+    if (this.props.myBottoms.length > 0) {
+      this.props.displayBottom(this.props.myBottoms[this.state.index])
+      return (
+        <div className='tile'>
+          <img src={this.props.myBottoms[this.state.index].image_url} />
+        </div>
+      )
+    }
   }
 
   render() {
