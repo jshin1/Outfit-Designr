@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 
+
 class Login extends Component {
 
   loginUser = (input) => {
@@ -19,9 +20,9 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <input onChange={this.props.loginInput} placeholder='Please enter username' value={this.props.userInput}/>
-        <button type='submit' onClick={() => this.loginUser(this.props.userInput)}>Login</button>
+      <div className='form-group'>
+      <input onChange={this.props.loginInput} placeholder='Please enter username' value={this.props.userInput}/>
+      <button type='submit' className='btn btn-primary' onClick={() => this.loginUser(this.props.userInput)}>Login</button>
       </div>
     );
   }

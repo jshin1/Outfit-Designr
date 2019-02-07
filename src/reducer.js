@@ -19,9 +19,8 @@ const initialState = {
   userInput: '',
 
   colors: [],
-
-
-  hatColor: ''
+  outfits: [],
+  currentOutfit: []
 }
 
 function reducer(state=initialState, action) {
@@ -60,6 +59,11 @@ function reducer(state=initialState, action) {
 
     case 'SET_COLORS':
       return {...state, colors: [...state.colors, action.payload]}
+
+    case 'FETCH_OUTFITS':
+      return {...state, outfits: [...state.outfits, action.payload]}
+    case 'SET_OUTFIT':
+      return {...state, currentOutfit: action.payload}
 
     case 'LOGIN_INPUT':
       return {...state, userInput: action.payload}

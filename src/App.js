@@ -9,31 +9,43 @@ import MainContainer from './containers/MainContainer'
 import About from './components/About'
 import Icon from '@material-ui/core/Icon'
 import Profile from './containers/Profile'
+import Gallery from './containers/Gallery'
 
 import ButtonAppBar from './styles/ButtonAppBar'
 import PrimarySearchAppBar from './styles/PrimarySearchAppBar'
 
 class App extends Component {
 
+  componentDidMount() {
+    fetch('http://localhost:3000/api/v1/outfits')
+    .then(res => res.json())
+    .then(data => {
+      return data.map(outfit => {
+        console.log(outfit.clothes)
+        return this.props.fetchOutfits(outfit.clothes)
+      })
+    })
+  }
 
   render() {
-    console.log(this.props.currentUserId);
     return (
       <div className="App">
           <PrimarySearchAppBar />
           <Router>
             <>
-              <nav>
-                <Link to='/'>
-                  <i class="material-icons">home</i>
+              <nav className="navbar navbar-dark bg-dark">
+                <Link className='navbar-brand' to='/'>
+                  <button type="button" class="btn btn-outline-warning">Home</button>
                 </Link>
-                <Link to='/profile'>Profile</Link>
-                <Link to='/main'>Main</Link>
-                <Link to='/about'>About</Link>
+                <Link className='navbar-brand' to='/profile'>Profile</Link>
+                <Link className='navbar-brand' to='/main'>Main</Link>
+                <Link className='navbar-brand' to='/gallery'>Gallery</Link>
+                <Link className='navbar-brand' to='/about'>About</Link>
               </nav>
                 <Route exact path="/" render={() => (this.props.currentUserId !== null ? (<Redirect to="/main"/>) : (<Home/>))}/>
                 <Route path='/profile' component={Profile} />
                 <Route path='/main' component={MainContainer} />
+                <Route path='/gallery' component={Gallery} />
                 <Route path='/about' component={About} />
             </>
           </Router>
@@ -45,8 +57,15 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
   currentUserId: state.currentUserId,
-  currentUserName: state.currentUserName
+  currentUserName: state.currentUserName,
+  outfits: state.outfits
   }
 }
 
-export default connect(mapStateToProps, null)(App);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchOutfits: (data) => dispatch({type: 'FETCH_OUTFITS', payload: data})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

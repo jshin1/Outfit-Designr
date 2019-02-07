@@ -50,11 +50,12 @@ img {
 }
 
 .home {
-  position: fixed;
+  /* position: fixed; */
   /* top: -25%; */
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  /* left: -50%; */
+  /* width: 200%; */
+  /* height: 200%; */
+  top: 40%;
 }
 
 .home img {
@@ -71,4 +72,13 @@ img {
 
 .wheel {
   max-height: 700px;
+}
+
+.outfit {
+  display: flex;
+  flex-direction: row;
+}
+
+.ootd img {
+  max-width: 400px;
 }

@@ -41,10 +41,15 @@ class MainContainer extends Component {
   render() {
     return (
       <div className='container'>
+        'HATS'
         <HatContainer/>
+        'TOPS'
         <TopContainer/>
+        'JACKETS'
         <JacketContainer/>
+        'BOTTOMS'
         <BottomContainer/>
+        'SHOES'
         <ShoeContainer/>
         <button onClick={this.reroute}>Add to my profile!</button>
       </div>

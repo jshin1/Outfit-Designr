@@ -5,6 +5,7 @@ import TopPicker from './TopPicker'
 import JacketPicker from './JacketPicker'
 import BottomPicker from './BottomPicker'
 import ShoePicker from './ShoePicker'
+import Ootd from '../components/Ootd'
 
 class Profile extends Component {
 
@@ -12,6 +13,10 @@ class Profile extends Component {
     fetch('http://localhost:3000/api/v1/colors')
     .then(res => res.json())
     .then(colors => {
+      this.setState({
+        currentOutfit: [this.props.currentHat.id, this.props.currentTop.id, this.props.currentJacket.id, this.props.currentBottom.id, this.props.currentShoes.id]
+      })
+      console.log(this.state.currentOutfit)
       return colors.map(color => this.props.setColors(color))
     })
   }
@@ -43,6 +48,58 @@ class Profile extends Component {
     }
   }
 
+  state = {
+    currentOutfit: []
+  }
+  //
+  // saveOutfit = () => {
+  //   console.log('outfit has been saved, bihhhhhh!')
+  //
+  //
+  //
+  //   let clothes = []
+  //   this.state.currentOutfit.map(clothing => {
+  //     console.log(clothing.name)
+  //       return clothes.push({
+  //         'id': clothing.id,
+  //         'name': clothing.name,
+  //         'image_url': clothing.image_url,
+  //         'category_id': clothing.category_id,
+  //         'color_id': clothing.color_id
+  //       })
+  //     })
+  //
+  //   fetch('http://localhost:3000/api/v1/outfits', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       'user_id': 1,
+  //       'clothes': clothes
+  //       //clothes: [
+  //         // this.props.outfits.map(outfit => {
+  //         //   return outfit.map(clothing => {
+  //         //     return {
+  //         //       'id': clothing.id,
+  //         //       'name': clothing.name,
+  //         //       'image_url': clothing.image_url,
+  //         //       'category_id': clothing.category_id,
+  //         //       'color_id': clothing.color_id
+  //         //     }
+  //         //   })
+  //         // })
+  //       //]
+  //     })
+  //   })
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     console.log(clothes)
+  //     console.log(data)
+  //   })
+  // }
+
   // findComplementaryColors = () => {
   //   if (this.props.currentHat) {
   //     fetch('http://localhost:3000/api/v1/colors')
@@ -57,12 +114,31 @@ class Profile extends Component {
   //   }
   // }
 
+  save = () => {
+    fetch('http://localhost:3000/api/v1/outfits', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          occasion_id: 2,
+          user_id: 1,
+          clothes: this.state.currentOutfit
+        })
+      })
+    .then(res=>res.json())
+    .then(data => console.log(data))
+  }
+
   render() {
     return (
       <div>
         <h1>{`Welcome to your DESIGN PORTAL, ${this.props.currentUserName}`}</h1>
         <img className='wheel' src='https://1.bp.blogspot.com/-AxRd0J6IncI/Vqe0uEUjgjI/AAAAAAAAJOw/ANepkB3-2qo/s1600/astounding-color-wheel-analogous-color-scheme-new-at-homes-gallery-ideas.jpg' />
         <button type='submit' onClick={this.reroute}>Log Out</button>
+
+        <Ootd />
 
         {this.matchWithHat()}
         <HatPicker />
@@ -72,6 +148,7 @@ class Profile extends Component {
         <JacketPicker />
         <BottomPicker />
         <ShoePicker />
+        <button type='submit' onClick={this.save}>SAVE THIS OUTFIT, BIHHHHH</button>
       </div>
 
     );
@@ -88,7 +165,9 @@ const mapStateToProps = (state) => {
     currentBottom: state.currentBottom,
     currentShoes: state.currentShoes,
 
-    colors: state.colors
+    colors: state.colors,
+    outfits: state.outfits,
+    currentOutfit: state.currentOutfit
   }
 }
 
@@ -96,7 +175,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     logOut: () => {
       return dispatch({type: 'LOG_OUT', payload: null})},
-    setColors: (data) => dispatch({type: 'SET_COLORS', payload: data})
+    setColors: (data) => dispatch({type: 'SET_COLORS', payload: data}),
+    setOutfit: (data) => dispatch({type: 'SET_OUTFIT', payload: data})
   }
 }
 
