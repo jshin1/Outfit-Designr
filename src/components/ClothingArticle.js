@@ -24,7 +24,7 @@ class ClothingArticle extends Component {
           return (
             <div className='tile'>
               <h2>{h.name}</h2>
-              <img src={h.image_url} id="hat" onClick={(event) => this.selectClothing(event, h)}/>
+              <img className='img-thumbnail' src={h.image_url} id="hat" onClick={(event) => this.selectClothing(event, h)}/>
             </div>
           )
         })
@@ -33,7 +33,7 @@ class ClothingArticle extends Component {
           return (
             <div className='tile'>
               <h2>{t.name}</h2>
-              <img src={t.image_url} id="top" onClick={(event) => this.selectClothing(event, t)} />
+              <img className='img-thumbnail' src={t.image_url} id="top" onClick={(event) => this.selectClothing(event, t)} />
             </div>
           )
         })
@@ -42,7 +42,7 @@ class ClothingArticle extends Component {
           return (
             <div className='tile'>
               <h2>{j.name}</h2>
-              <img src={j.image_url} id="jacket" onClick={(event) => this.selectClothing(event, j)} />
+              <img className='img-thumbnail' src={j.image_url} id="jacket" onClick={(event) => this.selectClothing(event, j)} />
             </div>
           )
         })
@@ -51,7 +51,7 @@ class ClothingArticle extends Component {
           return (
             <div className='tile'>
               <h2>{b.name}</h2>
-              <img src={b.image_url} id="bottom" onClick={(event) => this.selectClothing(event, b)}/>
+              <img className='img-thumbnail' src={b.image_url} id="bottom" onClick={(event) => this.selectClothing(event, b)}/>
             </div>
           )
         })
@@ -60,7 +60,7 @@ class ClothingArticle extends Component {
           return (
             <div className='tile'>
               <h2>{s.name}</h2>
-              <img src={s.image_url} id="shoes" onClick={(event) => this.selectClothing(event, s)}/>
+              <img className='img-thumbnail' src={s.image_url} id="shoes" onClick={(event) => this.selectClothing(event, s)}/>
             </div>
           )
         })

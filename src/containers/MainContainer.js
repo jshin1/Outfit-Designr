@@ -41,10 +41,13 @@ class MainContainer extends Component {
   render() {
     return (
       <div className='container'>
-        'HATS'
-        <HatContainer/>
-        'TOPS'
-        <TopContainer/>
+        <div className='row'>
+          <HatContainer/>
+        </div>
+        <div className='row'>
+          'TOPS'
+          <TopContainer/>
+        </div>
         'JACKETS'
         <JacketContainer/>
         'BOTTOMS'

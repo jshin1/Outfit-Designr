@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 
+import Button from '../styles/Button'
+
 
 class Login extends Component {
 
@@ -20,10 +22,14 @@ class Login extends Component {
 
   render() {
     return (
-      <div className='form-group'>
-      <input onChange={this.props.loginInput} placeholder='Please enter username' value={this.props.userInput}/>
-      <button type='submit' className='btn btn-primary' onClick={() => this.loginUser(this.props.userInput)}>Login</button>
-      </div>
+      <div className='login'>
+        <input onChange={this.props.loginInput} placeholder='Please enter username' value={this.props.userInput}/>
+        <button type='submit' className='btn btn-primary' onClick={() => this.loginUser(this.props.userInput)}>Login</button>
+
+          <Button variant="contained" color="secondary">
+            Secondary
+          </Button>
+  </div>
     );
   }
 

@@ -11,8 +11,6 @@ import Icon from '@material-ui/core/Icon'
 import Profile from './containers/Profile'
 import Gallery from './containers/Gallery'
 
-import ButtonAppBar from './styles/ButtonAppBar'
-import PrimarySearchAppBar from './styles/PrimarySearchAppBar'
 
 class App extends Component {
 
@@ -30,17 +28,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <PrimarySearchAppBar />
           <Router>
             <>
-              <nav className="navbar navbar-dark bg-dark">
+              <nav className="navbar navbar-dark bg-primary">
                 <Link className='navbar-brand' to='/'>
-                  <button type="button" class="btn btn-outline-warning">Home</button>
+                  <button type="button" className="btn btn-outline-light">Home</button>
                 </Link>
-                <Link className='navbar-brand' to='/profile'>Profile</Link>
-                <Link className='navbar-brand' to='/main'>Main</Link>
-                <Link className='navbar-brand' to='/gallery'>Gallery</Link>
-                <Link className='navbar-brand' to='/about'>About</Link>
+                <Link className='navbar-brand' className="btn btn-outline-light" to='/profile'>Profile</Link>
+                <Link className='navbar-brand' className="btn btn-outline-light" to='/main'>Main</Link>
+                <Link className='navbar-brand' className="btn btn-outline-light" to='/gallery'>Gallery</Link>
+                <Link className='navbar-brand' className="btn btn-outline-light" to='/about'>About</Link>
               </nav>
                 <Route exact path="/" render={() => (this.props.currentUserId !== null ? (<Redirect to="/main"/>) : (<Home/>))}/>
                 <Route path='/profile' component={Profile} />

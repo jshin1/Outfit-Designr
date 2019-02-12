@@ -26,6 +26,10 @@ class Profile extends Component {
     this.props.history.push('/')
   }
 
+  complementaryColor = () => {
+
+  }
+
   matchWithHat = () => {
     if (this.props.currentHat) {
       let color = this.props.colors.find(color => color.id == this.props.currentHat.color_id)
@@ -140,6 +144,14 @@ class Profile extends Component {
 
         <Ootd />
 
+{'Please select how you would like to match your outfit: '}
+          <select>
+            <option value='0'>Complementary</option>
+            <option value='1'>Analogous</option>
+            <option value='2'>Triad</option>
+          </select>
+
+
         {this.matchWithHat()}
         <HatPicker />
 
@@ -148,7 +160,7 @@ class Profile extends Component {
         <JacketPicker />
         <BottomPicker />
         <ShoePicker />
-        <button type='submit' onClick={this.save}>SAVE THIS OUTFIT, BIHHHHH</button>
+        <button type='submit' className='btn btn-dark' onClick={this.save}>SAVE THIS OUTFIT, BIHHHHH</button>
       </div>
 
     );

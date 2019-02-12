@@ -1,3 +1,7 @@
+* {
+  font-family: 'Sarala', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -10,12 +14,12 @@
   max-height: 150px;
 }
 
-.container {
+/* .container {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
+} */
 
 .hats {
   display: flex;
@@ -43,31 +47,34 @@
 }
 
 img {
-  border:solid 1px red; margin:10px;}
+  border:solid 1px red; margin:10px;
+}
 
 .selected {
    box-shadow:0px 12px 22px 1px #333;
 }
 
 .home {
-  /* position: fixed; */
-  /* top: -25%; */
-  /* left: -50%; */
-  /* width: 200%; */
-  /* height: 200%; */
-  top: 40%;
+  background-image: url('https://images.unsplash.com/photo-1547597466-50406ff4f363?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  /* position: fixed;
+  top: -25%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  top: 40%; */
 }
 
-.home img {
- position: absolute;
- top: 0;
- left: 0;
- right: 0;
- bottom: 0;
- margin: auto;
- min-width: 50%;
- min-height: 50%;
- z-index: -20;
+.home h1 {
+  font-size: 100px;
+  color: white;
+  text-align: center;
+  margin-top: 10%;
 }
 
 .wheel {
@@ -81,4 +88,11 @@ img {
 
 .ootd img {
   max-width: 400px;
+}
+
+.login {
+  position: relative;
+  background-color: transparent;
+  top: 10%;
+  margin: 0 auto;
 }

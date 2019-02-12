@@ -18,8 +18,12 @@ class HatPicker extends Component {
       console.log(this.props.myHats);
       this.props.displayHat(this.props.myHats[this.state.index])
       return (
-        <div className='tile'>
-          <img src={this.props.myHats[this.state.index].image_url} />
+        <div>
+          <button>Previous</button>
+          <div className='tile'>
+            <img src={this.props.myHats[this.state.index].image_url} />
+          </div>
+          <button onClick={this.rotateHats}>Next</button>
         </div>
       )
     }
@@ -28,9 +32,7 @@ class HatPicker extends Component {
   render() {
     return (
       <div>
-      <button>Previous</button>
       {this.showMyHat()}
-      <button onClick={this.rotateHats}>Next</button>
       </div>
     );
   }
