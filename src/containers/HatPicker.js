@@ -58,6 +58,48 @@ class HatPicker extends Component {
             </div>
           )
         }
+      } else if (this.props.primaryColor != '0' && this.props.colorScheme == 'triad') {
+        const primaryColor = this.props.colors.find(color => color.id == this.props.primaryColor)
+        let primaryColorIndex = this.props.schemeColors.findIndex(el => el == primaryColor.name)
+
+        const color1 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex])
+
+        const color2index = () => {
+          if (primaryColorIndex + 4 >= this.props.schemeColors.length) {
+            return (primaryColorIndex + 4 - this.props.schemeColors.length)
+          } else {
+            return (primaryColorIndex + 4)
+          }
+        }
+
+        const color3index = () => {
+          if (primaryColorIndex + 8 >= this.props.schemeColors.length) {
+            return (primaryColorIndex + 8 - this.props.schemeColors.length)
+          } else {
+            return (primaryColorIndex + 8)
+          }
+        }
+
+        let color2 = this.props.colors.find(color => color.name == this.props.schemeColors[color2index()])
+        let color3 = this.props.colors.find(color => color.name == this.props.schemeColors[color3index()])
+
+        let filteredHats = this.props.myHats.filter(h => h.color_id == color1.id || h.color_id == color2.id || h.color_id == color3.id || h.color_id == 17 || h.color_id == 18 || h.color_id == 19)
+
+        if (filteredHats.length > 0) {
+
+          this.props.displayHat(filteredHats[this.props.hatIndex])
+
+          return (
+            <div>
+              <button onClick={this.props.decreaseHatIndex}>Previous</button>
+              <div className='tile'>
+                <img src={filteredHats[this.props.hatIndex].image_url} />
+              </div>
+              <button onClick={this.props.increaseHatIndex}>Next</button>
+            </div>
+          )
+        }
+
       } else {
       this.props.displayHat(this.props.myHats[this.props.hatIndex])
       return (

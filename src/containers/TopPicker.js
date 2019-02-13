@@ -59,6 +59,48 @@ class TopPicker extends Component {
             </div>
           )
         }
+      } else if (this.props.primaryColor != '0' && this.props.colorScheme == 'triad') {
+        const primaryColor = this.props.colors.find(color => color.id == this.props.primaryColor)
+        let primaryColorIndex = this.props.schemeColors.findIndex(el => el == primaryColor.name)
+
+        const color1 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex])
+
+        const color2index = () => {
+          if (primaryColorIndex + 4 >= this.props.schemeColors.length) {
+            return (primaryColorIndex + 4 - this.props.schemeColors.length)
+          } else {
+            return (primaryColorIndex + 4)
+          }
+        }
+
+        const color3index = () => {
+          if (primaryColorIndex + 8 >= this.props.schemeColors.length) {
+            return (primaryColorIndex + 8 - this.props.schemeColors.length)
+          } else {
+            return (primaryColorIndex + 8)
+          }
+        }
+
+        let color2 = this.props.colors.find(color => color.name == this.props.schemeColors[color2index()])
+        let color3 = this.props.colors.find(color => color.name == this.props.schemeColors[color3index()])
+
+        let filteredTops = this.props.myTops.filter(j => j.color_id == color1.id || j.color_id == color2.id || j.color_id == color3.id || j.color_id == 17 || j.color_id == 18 || j.color_id == 19)
+
+        if (filteredTops.length > 0) {
+
+          this.props.displayTop(filteredTops[this.props.topIndex])
+
+          return (
+            <div>
+              <p>hi</p>
+              <button onClick={this.props.decreaseTopIndex}>Previous</button>
+              <div className='tile'>
+                <img src={filteredTops[this.props.topIndex].image_url} />
+              </div>
+              <button onClick={this.props.increaseTopIndex}>Next</button>
+            </div>
+          )
+        }
       } else {
       this.props.displayTop(this.props.myTops[this.props.topIndex])
       return (

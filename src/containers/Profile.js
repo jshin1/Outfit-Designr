@@ -32,28 +32,6 @@ class Profile extends Component {
     }
   }
 
-  matchWithHat = () => {
-    if (this.props.currentHat) {
-      let color = this.props.colors.find(color => color.id == this.props.currentHat.color_id)
-      return(
-        <div>
-
-        </div>
-      )
-    }
-  }
-
-  matchWithTop = () => {
-    if (this.props.currentTop) {
-      let color = this.props.colors.find(c => c.id == this.props.currentTop.color_id)
-      return(
-        <div>
-
-        </div>
-      )
-    }
-  }
-
   state = {
     currentOutfit: [],
   }
@@ -84,6 +62,69 @@ class Profile extends Component {
   changeSetting = (event) => {
     this.props.setPrimaryColor(event)
     this.props.resetIndex()
+  }
+
+  colorRecommender = () => {
+    if (this.props.colorScheme === 'complementary' && this.props.primaryColor != '0') {
+      const primaryColor = this.props.colors.find(color => color.id == this.props.primaryColor)
+
+      return(
+        <div>
+          {`You've chosen ${primaryColor.name} as your primary color! The complementary color is ${primaryColor.complementary_color}! Your wardrobe has been modified to best refine your look.`}
+        </div>
+      )
+    } else if (this.props.colorScheme === 'analogous' && this.props.primaryColor != '0') {
+      const primaryColor = this.props.colors.find(color => color.id == this.props.primaryColor)
+      let primaryColorIndex = this.props.schemeColors.findIndex(el => el == primaryColor.name)
+      console.log(primaryColorIndex)
+
+      let color1 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex])
+      let color2 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex - 1])
+      let color3 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex + 1])
+      let color4 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex - 2])
+      let color5 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex + 2])
+      return(
+        <div>
+          {`Looks like you've chosen to match your outfit with ${this.props.colorScheme} colors!`} <br />
+          {`Being that your primary color is ${primaryColor.name}, you have a several options:`} <br />
+          {`1.  ${color2.name} / ${color1.name} / ${color3.name}`} <br />
+          {`2. ${color1.name} / ${color3.name} / ${color5.name}`} <br />
+          {`3. ${color4.name} / ${color2.name} / ${color1.name}`}
+        </div>
+      )
+    } else if (this.props.colorScheme === 'triad' && this.props.primaryColor != '0') {
+      const primaryColor = this.props.colors.find(color => color.id == this.props.primaryColor)
+      let primaryColorIndex = this.props.schemeColors.findIndex(el => el == primaryColor.name)
+      console.log(primaryColorIndex)
+
+      const color1 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex])
+
+      const color2index = () => {
+        if (primaryColorIndex + 4 >= this.props.schemeColors.length) {
+          return (primaryColorIndex + 4 - this.props.schemeColors.length)
+        } else {
+          return (primaryColorIndex + 4)
+        }
+      }
+
+      const color3index = () => {
+        if (primaryColorIndex + 8 >= this.props.schemeColors.length) {
+          return (primaryColorIndex + 8 - this.props.schemeColors.length)
+        } else {
+          return (primaryColorIndex + 8)
+        }
+      }
+
+      let color2 = this.props.colors.find(color => color.name == this.props.schemeColors[color2index()])
+      let color3 = this.props.colors.find(color => color.name == this.props.schemeColors[color3index()])
+      return(
+        <div>
+          {`Looks like you've chosen to match your outfit with ${this.props.colorScheme} colors!`} <br />
+          {'Your color options are as follows:'} <br />
+          {`${color1.name}, ${color2.name}, ${color3.name}`}
+        </div>
+      )
+    }
   }
 
   render() {
@@ -125,11 +166,8 @@ class Profile extends Component {
             <option value='19'>Black</option>
           </select>
 
-
-        {this.matchWithHat()}
+          {this.colorRecommender()}
         <HatPicker />
-
-        {this.matchWithTop()}
         <TopPicker />
         <JacketPicker />
         <BottomPicker />
@@ -161,7 +199,9 @@ const mapStateToProps = (state) => {
     colorScheme: state.colorScheme,
     primaryColor: state.primaryColor,
     outfits: state.outfits,
-    currentOutfit: state.currentOutfit
+    currentOutfit: state.currentOutfit,
+
+    schemeColors: state.schemeColors
   }
 }
 

@@ -18,6 +18,8 @@ const initialState = {
   currentUserName: null,
   userInput: '',
 
+  allSelected: false,
+
   colors: [],
   schemeColors: ['magenta', 'red magenta', 'red', 'red orange', 'yellow', 'yellow green', 'green', 'blue green', 'cyan', 'blue', 'violet blue', 'violet'],
   colorScheme: 'complementary',
@@ -35,6 +37,9 @@ const initialState = {
 
 function reducer(state=initialState, action) {
   switch(action.type) {
+
+    case 'SELECT_ALL':
+      return {...state, allSelected: action.payload, myHats: state.hats[0], myTops: state.tops[0], myJackets: state.jackets[0], myBottoms: state.bottoms[0], myShoes: state.shoes[0]}
 
     case 'INCREASE_HAT_INDEX':
       return {...state, hatIndex: state.hatIndex + 1}

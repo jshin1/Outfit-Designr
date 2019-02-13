@@ -67,6 +67,48 @@ class BottomPicker extends Component {
             </div>
           )
         }
+      } else if (this.props.primaryColor != '0' && this.props.colorScheme == 'triad') {
+        const primaryColor = this.props.colors.find(color => color.id == this.props.primaryColor)
+        let primaryColorIndex = this.props.schemeColors.findIndex(el => el == primaryColor.name)
+
+        const color1 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex])
+
+        const color2index = () => {
+          if (primaryColorIndex + 4 >= this.props.schemeColors.length) {
+            return (primaryColorIndex + 4 - this.props.schemeColors.length)
+          } else {
+            return (primaryColorIndex + 4)
+          }
+        }
+
+        const color3index = () => {
+          if (primaryColorIndex + 8 >= this.props.schemeColors.length) {
+            return (primaryColorIndex + 8 - this.props.schemeColors.length)
+          } else {
+            return (primaryColorIndex + 8)
+          }
+        }
+
+        let color2 = this.props.colors.find(color => color.name == this.props.schemeColors[color2index()])
+        let color3 = this.props.colors.find(color => color.name == this.props.schemeColors[color3index()])
+
+        let filteredBottoms = this.props.myBottoms.filter(b => b.color_id == color1.id || b.color_id == color2.id || b.color_id == color3.id || b.color_id == 17 || b.color_id == 18 || b.color_id == 19)
+
+        if (filteredBottoms.length > 0) {
+
+          this.props.displayBottom(filteredBottoms[this.props.bottomIndex])
+
+          return (
+            <div>
+              <p>hi</p>
+              <button onClick={this.props.decreaseBottomIndex}>Previous</button>
+              <div className='tile'>
+                <img src={filteredBottoms[this.props.bottomIndex].image_url} />
+              </div>
+              <button onClick={this.props.increaseBottomIndex}>Next</button>
+            </div>
+          )
+        }
       } else {
       this.props.displayBottom(this.props.myBottoms[this.props.bottomIndex])
       return (

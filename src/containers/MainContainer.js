@@ -54,6 +54,7 @@ class MainContainer extends Component {
         <BottomContainer/>
         'SHOES'
         <ShoeContainer/>
+        <button onClick={this.props.selectAll}>SELECT ALL</button>
         <button onClick={this.reroute}>Add to my profile!</button>
       </div>
     );
@@ -66,7 +67,8 @@ function mapStateToProps(state) {
     tops: state.tops,
     jackets: state.jackets,
     bottoms: state.bottoms,
-    shoes: state.shoes
+    shoes: state.shoes,
+    allSelected: state.allSelected
   }
 }
 //get rid of
@@ -78,6 +80,8 @@ function mapDispatchToProps(dispatch) {
     fetchJackets: (data) => dispatch({type: 'FETCH_JACKETS', payload: data}),
     fetchBottoms: (data) => dispatch({type: 'FETCH_BOTTOMS', payload: data}),
     fetchShoes: (data) => dispatch({type: 'FETCH_SHOES', payload: data}),
+
+    selectAll: (data) => dispatch({type: 'SELECT_ALL', payload: true})
   }
 }
 

@@ -3,22 +3,6 @@ import {connect} from 'react-redux'
 
 class JacketPicker extends Component {
 
-  state = {
-    index: 0
-  }
-
-  lookBack = () => {
-    this.setState(prevState => ({
-      index: prevState.index - 1
-    }))
-  }
-
-  rotateJackets = () => {
-    this.setState(prevState => ({
-      index: prevState.index + 1
-    }))
-  }
-
   showMyJacket = () => {
 
     if (this.props.myJackets.length > 0) {
@@ -58,6 +42,48 @@ class JacketPicker extends Component {
         let color5 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex + 2])
 
         let filteredJackets = this.props.myJackets.filter(j => j.color_id == color1.id || j.color_id == color2.id || j.color_id == color3.id || j.color_id == color4.id || j.color_id == color5.id || j.color_id == 17 || j.color_id == 18 || j.color_id == 19)
+
+        if (filteredJackets.length > 0) {
+
+          this.props.displayJacket(filteredJackets[this.props.jacketIndex])
+
+          return (
+            <div>
+              <p>hi</p>
+              <button onClick={this.props.decreaseJacketIndex}>Previous</button>
+              <div className='tile'>
+                <img src={filteredJackets[this.props.jacketIndex].image_url} />
+              </div>
+              <button onClick={this.props.increaseJacketIndex}>Next</button>
+            </div>
+          )
+        }
+      } else if (this.props.primaryColor != '0' && this.props.colorScheme == 'triad') {
+        const primaryColor = this.props.colors.find(color => color.id == this.props.primaryColor)
+        let primaryColorIndex = this.props.schemeColors.findIndex(el => el == primaryColor.name)
+
+        const color1 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex])
+
+        const color2index = () => {
+          if (primaryColorIndex + 4 >= this.props.schemeColors.length) {
+            return (primaryColorIndex + 4 - this.props.schemeColors.length)
+          } else {
+            return (primaryColorIndex + 4)
+          }
+        }
+
+        const color3index = () => {
+          if (primaryColorIndex + 8 >= this.props.schemeColors.length) {
+            return (primaryColorIndex + 8 - this.props.schemeColors.length)
+          } else {
+            return (primaryColorIndex + 8)
+          }
+        }
+
+        let color2 = this.props.colors.find(color => color.name == this.props.schemeColors[color2index()])
+        let color3 = this.props.colors.find(color => color.name == this.props.schemeColors[color3index()])
+
+        let filteredJackets = this.props.myJackets.filter(j => j.color_id == color1.id || j.color_id == color2.id || j.color_id == color3.id || j.color_id == 17 || j.color_id == 18 || j.color_id == 19)
 
         if (filteredJackets.length > 0) {
 

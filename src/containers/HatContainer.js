@@ -26,4 +26,10 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, null)(HatContainer);
+function mapDispatchToProps(dispatch) {
+  return {
+    addHats: (data) => dispatch({type: 'ADD_HATS', payload: data})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HatContainer);

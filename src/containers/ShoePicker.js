@@ -57,6 +57,48 @@ class ShoePicker extends Component {
             </div>
           )
         }
+      } else if (this.props.primaryColor != '0' && this.props.colorScheme == 'triad') {
+        const primaryColor = this.props.colors.find(color => color.id == this.props.primaryColor)
+        let primaryColorIndex = this.props.schemeColors.findIndex(el => el == primaryColor.name)
+
+        const color1 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex])
+
+        const color2index = () => {
+          if (primaryColorIndex + 4 >= this.props.schemeColors.length) {
+            return (primaryColorIndex + 4 - this.props.schemeColors.length)
+          } else {
+            return (primaryColorIndex + 4)
+          }
+        }
+
+        const color3index = () => {
+          if (primaryColorIndex + 8 >= this.props.schemeColors.length) {
+            return (primaryColorIndex + 8 - this.props.schemeColors.length)
+          } else {
+            return (primaryColorIndex + 8)
+          }
+        }
+
+        let color2 = this.props.colors.find(color => color.name == this.props.schemeColors[color2index()])
+        let color3 = this.props.colors.find(color => color.name == this.props.schemeColors[color3index()])
+
+        let filteredShoes = this.props.myShoes.filter(s => s.color_id == color1.id || s.color_id == color2.id || s.color_id == color3.id || s.color_id == 17 || s.color_id == 18 || s.color_id == 19)
+
+        if (filteredShoes.length > 0) {
+
+          this.props.displayShoes(filteredShoes[this.props.shoesIndex])
+
+          return (
+            <div>
+              <p>hi</p>
+              <button onClick={this.props.decreaseShoesIndex}>Previous</button>
+              <div className='tile'>
+                <img src={filteredShoes[this.props.shoesIndex].image_url} />
+              </div>
+              <button onClick={this.props.increaseShoesIndex}>Next</button>
+            </div>
+          )
+        }
       } else {
       this.props.displayShoes(this.props.myShoes[this.props.shoesIndex])
       return (

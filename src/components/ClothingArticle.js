@@ -80,7 +80,8 @@ const mapStateToProps = (state) => {
     myTops: state.myTops,
     myJackets: state.myJackets,
     myBottoms: state.myBottoms,
-    myShoes: state.myShoes
+    myShoes: state.myShoes,
+    allSelected: state.allSelected
   }
 }
 
