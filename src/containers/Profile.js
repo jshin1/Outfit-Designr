@@ -53,12 +53,6 @@ class Profile extends Component {
     .then(data => console.log(data))
   }
 
-
-
-  // matchOutfit = (event) => {
-  //   console.log(event.target.value.toLowerCase());
-  // }
-
   changeSetting = (event) => {
     this.props.setPrimaryColor(event)
     this.props.resetIndex()
@@ -79,10 +73,42 @@ class Profile extends Component {
       console.log(primaryColorIndex)
 
       let color1 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex])
-      let color2 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex - 1])
-      let color3 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex + 1])
-      let color4 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex - 2])
-      let color5 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex + 2])
+
+      const color2index = () => {
+        if (primaryColorIndex - 1 < 0) {
+          return (this.props.schemeColors.length - 1)
+        } else {
+          return (primaryColorIndex -1)
+        }
+      }
+
+      const color3index = () => {
+        if (primaryColorIndex + 1 >= this.props.schemeColors.length) {
+          return (primaryColorIndex + 1 - this.props.schemeColors.length)
+        } else {
+          return (primaryColorIndex + 1)
+        }
+      }
+
+        const color4index = () => {
+          if (primaryColorIndex - 2 < 0) {
+            return (this.props.schemeColors.length - 2)
+          } else {
+            return (primaryColorIndex - 2)
+          }
+        }
+
+        const color5index = () => {
+          if (primaryColorIndex + 2 >= this.props.schemeColors.length) {
+            return (primaryColorIndex + 2 - this.props.schemeColors.length)
+          } else {
+            return (primaryColorIndex + 2)
+          }
+      }
+      let color2 = this.props.colors.find(color => color.name == this.props.schemeColors[color2index()])
+      let color3 = this.props.colors.find(color => color.name == this.props.schemeColors[color3index()])
+      let color4 = this.props.colors.find(color => color.name == this.props.schemeColors[color4index()])
+      let color5 = this.props.colors.find(color => color.name == this.props.schemeColors[color5index()])
       return(
         <div>
           {`Looks like you've chosen to match your outfit with ${this.props.colorScheme} colors!`} <br />
@@ -157,13 +183,6 @@ class Profile extends Component {
             <option value='10'>Blue</option>
             <option value='11'>Violet Blue</option>
             <option value='12'>Violet</option>
-            <option value='13'>Denim</option>
-            <option value='14'>Navy</option>
-            <option value='15'>Burgundy</option>
-            <option value='16'>Olive</option>
-            <option value='17'>White</option>
-            <option value='18'>Grey</option>
-            <option value='19'>Black</option>
           </select>
 
           {this.colorRecommender()}

@@ -45,10 +45,42 @@ class BottomPicker extends Component {
         let primaryColorIndex = this.props.schemeColors.findIndex(el => el == primaryColor.name);
 
         let color1 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex])
-        let color2 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex - 1])
-        let color3 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex + 1])
-        let color4 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex - 2])
-        let color5 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex + 2])
+
+        const color2index = () => {
+          if (primaryColorIndex - 1 < 0) {
+            return (this.props.schemeColors.length - 1)
+          } else {
+            return (primaryColorIndex -1)
+          }
+        }
+
+        const color3index = () => {
+          if (primaryColorIndex + 1 >= this.props.schemeColors.length) {
+            return (primaryColorIndex + 1 - this.props.schemeColors.length)
+          } else {
+            return (primaryColorIndex + 1)
+          }
+        }
+
+          const color4index = () => {
+            if (primaryColorIndex - 2 < 0) {
+              return (this.props.schemeColors.length - 2)
+            } else {
+              return (primaryColorIndex - 2)
+            }
+          }
+
+          const color5index = () => {
+            if (primaryColorIndex + 2 >= this.props.schemeColors.length) {
+              return (primaryColorIndex + 2 - this.props.schemeColors.length)
+            } else {
+              return (primaryColorIndex + 2)
+            }
+        }
+        let color2 = this.props.colors.find(color => color.name == this.props.schemeColors[color2index()])
+        let color3 = this.props.colors.find(color => color.name == this.props.schemeColors[color3index()])
+        let color4 = this.props.colors.find(color => color.name == this.props.schemeColors[color4index()])
+        let color5 = this.props.colors.find(color => color.name == this.props.schemeColors[color5index()])
 
         let filteredBottoms = this.props.myBottoms.filter(b => b.color_id == color1.id || b.color_id == color2.id || b.color_id == color3.id || b.color_id == color4.id || b.color_id == color5.id || b.color_id == 17 || b.color_id == 18 || b.color_id == 19)
 

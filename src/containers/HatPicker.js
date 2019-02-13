@@ -3,6 +3,23 @@ import {connect} from 'react-redux'
 
 class HatPicker extends Component {
 
+  goBack = (array) => {
+    let lastIdx = (array.length - 1)
+    if (this.props.hatIndex === 0) {
+      this.props.setHatIndex(lastIdx)
+    } else {
+      this.props.decreaseHatIndex()
+    }
+  }
+
+  goForward = (array) => {
+    if (this.props.hatIndex === array.length - 1) {
+      this.props.setHatIndex(0)
+    } else {
+      this.props.increaseHatIndex()
+    }
+  }
+
   showMyHat = () => {
 
     if (this.props.myHats.length > 0) {
@@ -20,11 +37,11 @@ class HatPicker extends Component {
           this.props.displayHat(filteredHats[this.props.hatIndex])
           return (
             <div>
-              <button onClick={this.props.decreaseHatIndex}>Previous</button>
+              <button onClick={() => this.goBack(filteredHats)}>Previous</button>
               <div className='tile'>
                 <img src={filteredHats[this.props.hatIndex].image_url} />
               </div>
-              <button onClick={this.props.increaseHatIndex}>Next</button>
+              <button onClick={() => this.goForward(filteredHats)}>Next</button>
             </div>
           )
         }
@@ -36,10 +53,42 @@ class HatPicker extends Component {
         let primaryColorIndex = this.props.schemeColors.findIndex(el => el == primaryColor.name);
 
         let color1 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex])
-        let color2 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex - 1])
-        let color3 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex + 1])
-        let color4 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex - 2])
-        let color5 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex + 2])
+
+        const color2index = () => {
+          if (primaryColorIndex - 1 < 0) {
+            return (this.props.schemeColors.length - 1)
+          } else {
+            return (primaryColorIndex -1)
+          }
+        }
+
+        const color3index = () => {
+          if (primaryColorIndex + 1 >= this.props.schemeColors.length) {
+            return (primaryColorIndex + 1 - this.props.schemeColors.length)
+          } else {
+            return (primaryColorIndex + 1)
+          }
+        }
+
+          const color4index = () => {
+            if (primaryColorIndex - 2 < 0) {
+              return (this.props.schemeColors.length - 2)
+            } else {
+              return (primaryColorIndex - 2)
+            }
+          }
+
+          const color5index = () => {
+            if (primaryColorIndex + 2 >= this.props.schemeColors.length) {
+              return (primaryColorIndex + 2 - this.props.schemeColors.length)
+            } else {
+              return (primaryColorIndex + 2)
+            }
+        }
+        let color2 = this.props.colors.find(color => color.name == this.props.schemeColors[color2index()])
+        let color3 = this.props.colors.find(color => color.name == this.props.schemeColors[color3index()])
+        let color4 = this.props.colors.find(color => color.name == this.props.schemeColors[color4index()])
+        let color5 = this.props.colors.find(color => color.name == this.props.schemeColors[color5index()])
 
         let filteredHats = this.props.myHats.filter(h => h.color_id == color1.id || h.color_id == color2.id || h.color_id == color3.id || h.color_id == color4.id || h.color_id == color5.id || h.color_id == 17 || h.color_id == 18 || h.color_id == 19)
 
@@ -50,11 +99,11 @@ class HatPicker extends Component {
           return (
             <div>
               <p>hi</p>
-              <button onClick={this.props.decreaseHatIndex}>Previous</button>
+              <button onClick={() => this.goBack(filteredHats)}>Previous</button>
               <div className='tile'>
                 <img src={filteredHats[this.props.hatIndex].image_url} />
               </div>
-              <button onClick={this.props.increaseHatIndex}>Next</button>
+              <button onClick={() => this.goForward(filteredHats)}>Next</button>
             </div>
           )
         }
@@ -91,11 +140,11 @@ class HatPicker extends Component {
 
           return (
             <div>
-              <button onClick={this.props.decreaseHatIndex}>Previous</button>
+              <button onClick={() => this.goBack(filteredHats)}>Previous</button>
               <div className='tile'>
                 <img src={filteredHats[this.props.hatIndex].image_url} />
               </div>
-              <button onClick={this.props.increaseHatIndex}>Next</button>
+              <button onClick={() => this.goForward(filteredHats)}>Next</button>
             </div>
           )
         }
@@ -104,11 +153,11 @@ class HatPicker extends Component {
       this.props.displayHat(this.props.myHats[this.props.hatIndex])
       return (
         <div>
-          <button onClick={this.props.decreaseHatIndex}>Previous</button>
+          <button onClick={() => this.goBack(this.props.myHats)}>Previous</button>
           <div className='tile'>
             <img src={this.props.myHats[this.props.hatIndex].image_url} />
           </div>
-          <button onClick={this.props.increaseHatIndex}>Next</button>
+          <button onClick={() => this.goForward(this.props.myHats)}>Next</button>
         </div>
       )}
     }
@@ -139,7 +188,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     displayHat: (data) => dispatch({type: 'DISPLAY_HAT', payload: data}),
     decreaseHatIndex: (data) => dispatch({type: 'DECREASE_HAT_INDEX', payload: data}),
-    increaseHatIndex: (data) => dispatch({type: 'INCREASE_HAT_INDEX', payload: data})
+    increaseHatIndex: (data) => dispatch({type: 'INCREASE_HAT_INDEX', payload: data}),
+    setHatIndex: (data) => dispatch({type: 'SET_HAT_INDEX', payload: data})
   }
 }
 
