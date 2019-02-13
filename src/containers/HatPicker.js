@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 
+import { Card } from 'semantic-ui-react'
+
 class HatPicker extends Component {
 
   goBack = (array) => {
@@ -39,6 +41,7 @@ class HatPicker extends Component {
             <div>
               <button onClick={() => this.goBack(filteredHats)}>Previous</button>
               <div className='tile'>
+                <Card color='red' image={filteredHats[this.props.hatIndex].image_url} />
                 <img src={filteredHats[this.props.hatIndex].image_url} />
               </div>
               <button onClick={() => this.goForward(filteredHats)}>Next</button>

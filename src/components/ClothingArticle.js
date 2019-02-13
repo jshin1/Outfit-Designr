@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
+import { Card, Icon, Image, Reveal } from 'semantic-ui-react'
+
 class ClothingArticle extends Component {
 
   selectClothing = (event, data) => {
@@ -24,6 +26,9 @@ class ClothingArticle extends Component {
           return (
             <div className='tile'>
               <h2>{h.name}</h2>
+
+
+
               <img className='img-thumbnail' src={h.image_url} id="hat" onClick={(event) => this.selectClothing(event, h)}/>
             </div>
           )

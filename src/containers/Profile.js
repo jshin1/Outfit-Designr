@@ -7,16 +7,36 @@ import BottomPicker from './BottomPicker'
 import ShoePicker from './ShoePicker'
 import Ootd from '../components/Ootd'
 
+import {Dropdown, Button, Segment} from 'semantic-ui-react'
+
+const schemeOptions = [
+  {key: 'Complementary', value: 'complementary', text: 'Complementary'},
+  {key: 'Analogous', value: 'analogous', text: 'Analogous'},
+  {key: 'Triad', value: 'triad', text: 'Triad'}
+]
+
+const colorOptions = [
+  {key: '0', value: '0', text: 'Show All'},
+  {key: 'Magenta', value: '1', text: 'Magenta'},
+  {key: 'Red Magenta', value: '2', text: 'Red Magenta'},
+  {key: 'Red', value: '3', text: 'Red'},
+  {key: 'Red Orange', value: '4', text: 'Red Orange'},
+  {key: 'Yellow', value: '5', text: 'Yellow'},
+  {key: 'Yellow Green', value: '6', text: 'Yellow Green'},
+  {key: 'Green', value: '7', text: 'Green'},
+  {key: 'Blue Green', value: '8', text: 'Blue Green'},
+  {key: 'Cyan', value: '9', text: 'Cyan'},
+  {key: 'Blue', value: '10', text: 'Blue'},
+  {key: 'Violet Blue', value: '11', text: 'Violet Blue'},
+  {key: 'Violet', value: '12', text: 'Violet'}
+]
+
 class Profile extends Component {
 
   componentDidMount() {
     fetch('http://localhost:3000/api/v1/colors')
     .then(res => res.json())
     .then(colors => {
-      this.setState({
-        currentOutfit: [this.props.currentHat.id, this.props.currentTop.id, this.props.currentJacket.id, this.props.currentBottom.id, this.props.currentShoes.id]
-      })
-      console.log(this.state.currentOutfit)
       return colors.map(color => this.props.setColors(color))
     })
   }
@@ -33,10 +53,12 @@ class Profile extends Component {
   }
 
   state = {
-    currentOutfit: [],
+    currentOutfit: []
   }
 
   save = () => {
+    const outfit = [this.props.currentHat.id, this.props.currentTop.id, this.props.currentJacket.id, this.props.currentBottom.id, this.props.currentShoes.id]
+
     fetch('http://localhost:3000/api/v1/outfits', {
         method: 'POST',
         headers: {
@@ -46,7 +68,7 @@ class Profile extends Component {
         body: JSON.stringify({
           occasion_id: 2,
           user_id: 1,
-          clothes: this.state.currentOutfit
+          clothes: outfit
         })
       })
     .then(res=>res.json())
@@ -153,48 +175,70 @@ class Profile extends Component {
     }
   }
 
+  testFunction = (event) => {
+    console.log(event);
+    console.log(event.target);
+  }
+
+
+
   render() {
-    return (
-      <div>
-        <h1>{`Welcome to your DESIGN PORTAL, ${this.props.currentUserName}`}</h1>
-        <img className='wheel' src='https://1.bp.blogspot.com/-AxRd0J6IncI/Vqe0uEUjgjI/AAAAAAAAJOw/ANepkB3-2qo/s1600/astounding-color-wheel-analogous-color-scheme-new-at-homes-gallery-ideas.jpg' />
-        <button type='submit' onClick={this.reroute}>Log Out</button>
 
-        <Ootd />
+    if (this.props.currentUserName === null) {
+      return(
+        <div>you're not logged in</div>
+      )
+    } else {
+      return (
+        <div>
+          <h1>{`Welcome to your DESIGN PORTAL, ${this.props.currentUserName}`}</h1>
 
-{'Please select how you would like to match your outfit: '}
-          <select onChange={(event) => this.props.setColorScheme(event)}>
-            <option value='complementary'>Complementary</option>
-            <option value='analogous'>Analogous</option>
-            <option value='triad'>Triad</option>
-          </select> <br />
-{'What would you like your primary color to be?'}
-          <select onChange={(event) => this.changeSetting(event)}>
-            <option value='0'>SHOW ALL</option>
-            <option value='1'>Magenta</option>
-            <option value='2'>Red Magenta</option>
-            <option value='3'>Red</option>
-            <option value='4'>Red Orange</option>
-            <option value='5'>Yellow</option>
-            <option value='6'>Yellow Green</option>
-            <option value='7'>Green</option>
-            <option value='8'>Blue Green</option>
-            <option value='9'>Cyan</option>
-            <option value='10'>Blue</option>
-            <option value='11'>Violet Blue</option>
-            <option value='12'>Violet</option>
-          </select>
+          <button type='submit' onClick={this.reroute}>Log Out</button>
 
-          {this.colorRecommender()}
-        <HatPicker />
-        <TopPicker />
-        <JacketPicker />
-        <BottomPicker />
-        <ShoePicker />
-        <button type='submit' className='btn btn-dark' onClick={this.save}>SAVE THIS OUTFIT, BIHHHHH</button>
-      </div>
 
-    );
+  {'Please select how you would like to match your outfit: '}
+            <select onChange={(event) => this.props.setColorScheme(event)}>
+              <option value='complementary'>Complementary</option>
+              <option value='analogous'>Analogous</option>
+              <option value='triad'>Triad</option>
+            </select> <br />
+  {'What would you like your primary color to be?'}
+            <select onChange={(event) => this.changeSetting(event)}>
+              <option value='0'>SHOW ALL</option>
+              <option value='1'>Magenta</option>
+              <option value='2'>Red Magenta</option>
+              <option value='3'>Red</option>
+              <option value='4'>Red Orange</option>
+              <option value='5'>Yellow</option>
+              <option value='6'>Yellow Green</option>
+              <option value='7'>Green</option>
+              <option value='8'>Blue Green</option>
+              <option value='9'>Cyan</option>
+              <option value='10'>Blue</option>
+              <option value='11'>Violet Blue</option>
+              <option value='12'>Violet</option>
+            </select>
+
+            {'Please select how you would like to match your outfit: '}
+          <Dropdown placeholder='Complementary' search selection options={schemeOptions} onChange={(event) => this.testFunction(event)} />
+          {'What would you like your primary color to be?'}
+          <Dropdown placeholder='All Colors' search selection options={colorOptions} onChange={(event) => this.testFunction(event)}/>
+
+            {this.colorRecommender()}
+          <HatPicker />
+          <TopPicker />
+          <JacketPicker />
+          <BottomPicker />
+          <ShoePicker />
+
+          <Segment inverted>
+            <Button inverted color='yellow'>Yellow</Button>
+          </Segment>
+
+          <button type='submit' className='btn btn-dark' onClick={this.save}>SAVE THIS OUTFIT, BIHHHHH</button>
+        </div>
+      )
+    }
   }
 }
 
@@ -241,7 +285,9 @@ const mapDispatchToProps = (dispatch) => {
     addTops: (data) => dispatch({type: 'ADD_TOPS', payload: data }),
     addJackets: (data) => dispatch({type: 'ADD_JACKETS', payload: data }),
     addBottoms: (data) => dispatch({type: 'ADD_BOTTOMS', payload: data }),
-    addShoes: (data) => dispatch({type: 'ADD_SHOES', payload: data })
+    addShoes: (data) => dispatch({type: 'ADD_SHOES', payload: data }),
+
+    setCurrentOutfit: (data) => dispatch({type: 'SET_CURRENT_OUTFIT', payload: data})
   }
 }
 

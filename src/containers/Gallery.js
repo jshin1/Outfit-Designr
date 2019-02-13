@@ -3,18 +3,27 @@ import { connect } from 'react-redux'
 
 class Gallery extends Component {
 
-  deleteOutfit = () => {
-    fetch('http://localhost:3000/api/v1/outfits/2', {
+  componentDidMount() {
+    fetch('http://localhost:3000/api/v1/outfits')
+    .then(res => res.json())
+    .then(data => {
+      this.props.loadOutfits(data)
+    })
+  }
+
+  deleteOutfit = (number) => {
+    fetch(`http://localhost:3000/api/v1/outfits/${number}`, {
         method: 'DELETE'
       })
     }
 
   showOutfits = () => {
+    debugger
     return this.props.outfits.map(outfit => {
       return (
         <div className='outfit'>
-          <button type='submit' onClick={this.deleteOutfit}>Delete Outfit</button>
-          {outfit.map(clothing => {
+          <button type='submit' onClick={() => this.deleteOutfit(outfit.id)}>Delete Outfit</button>
+          {outfit.clothes.map(clothing => {
             return(
               <div className='tile'>
                 <img src={clothing.image_url} />
@@ -27,19 +36,32 @@ class Gallery extends Component {
   }
 
   render() {
-    return (
-      <div>
-        {this.showOutfits()}
-      </div>
-    );
+    if (this.props.currentUserName === null) {
+      return(
+        <div>whaaaaaa</div>
+      )
+    } else {
+      return (
+        <div>
+          {this.props.outfits.length > 0 ? this.showOutfits() : <h4>no outfits found</h4>}
+        </div>
+      )
+    }
   }
 
 }
 
 const mapStateToProps = (state) => {
   return {
-    outfits: state.outfits
+    outfits: state.outfits,
+    currentUserName: state.currentUserName
   }
 }
 
-export default connect(mapStateToProps, null)(Gallery);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadOutfits: (data) => dispatch({type: 'LOAD_OUTFITS', payload: data})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Gallery);

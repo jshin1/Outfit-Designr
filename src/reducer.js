@@ -14,6 +14,9 @@ const initialState = {
   currentJacket: '',
   currentBottom: '',
   currentShoes: '',
+
+  currentOutfit: [],
+
   currentUserId: null,
   currentUserName: null,
   userInput: '',
@@ -37,6 +40,9 @@ const initialState = {
 
 function reducer(state=initialState, action) {
   switch(action.type) {
+
+    case 'LOAD_OUTFITS':
+      return {...state, outfits: action.payload}
 
     case 'SELECT_ALL':
       return {...state, allSelected: action.payload, myHats: state.hats[0], myTops: state.tops[0], myJackets: state.jackets[0], myBottoms: state.bottoms[0], myShoes: state.shoes[0]}
@@ -110,8 +116,8 @@ function reducer(state=initialState, action) {
     case 'SET_COLORS':
       return {...state, colors: [...state.colors, action.payload]}
 
-    case 'FETCH_OUTFITS':
-      return {...state, outfits: [...state.outfits, action.payload]}
+    // case 'FETCH_OUTFITS':
+    //   return {...state, outfits: [...state.outfits, action.payload]}
     case 'SET_OUTFIT':
       return {...state, currentOutfit: action.payload}
     case 'SET_PRIMARY_COLOR':

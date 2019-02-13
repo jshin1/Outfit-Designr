@@ -10,56 +10,63 @@ import {connect} from 'react-redux'
 import {clothes} from '../apiURLs'
 import '../App.css';
 
+
 class MainContainer extends Component {
 
-  componentDidMount() {
-    fetch('http://localhost:3000/api/v1/categories')
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      data.map(d => {
-        switch(d.name) {
-          case 'hat':
-            return this.props.fetchHats(d.clothes)
-          case 'top':
-            return this.props.fetchTops(d.clothes)
-          case 'jacket':
-            return this.props.fetchJackets(d.clothes)
-          case 'bottom':
-            return this.props.fetchBottoms(d.clothes)
-          case 'shoes':
-            return this.props.fetchShoes(d.clothes)
-        }
+    componentDidMount() {
+      fetch('http://localhost:3000/api/v1/categories')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        data.map(d => {
+          switch(d.name) {
+            case 'hat':
+              return this.props.fetchHats(d.clothes)
+            case 'top':
+              return this.props.fetchTops(d.clothes)
+            case 'jacket':
+              return this.props.fetchJackets(d.clothes)
+            case 'bottom':
+              return this.props.fetchBottoms(d.clothes)
+            case 'shoes':
+              return this.props.fetchShoes(d.clothes)
+          }
+        })
       })
-    })
-  }
+    }
 
-  reroute = () => {
-    this.props.history.push('/profile')
-  }
+    reroute = () => {
+      this.props.history.push('/profile')
+    }
 
-  render() {
-    return (
-      <div className='container'>
-        <div className='row'>
-          <HatContainer/>
-        </div>
-        <div className='row'>
-          'TOPS'
-          <TopContainer/>
-        </div>
-        'JACKETS'
-        <JacketContainer/>
-        'BOTTOMS'
-        <BottomContainer/>
-        'SHOES'
-        <ShoeContainer/>
-        <button onClick={this.props.selectAll}>SELECT ALL</button>
-        <button onClick={this.reroute}>Add to my profile!</button>
-      </div>
-    );
+    render() {
+      if (this.props.currentUserName === null) {
+        return (
+          <div>hi</div>
+        )
+      } else {
+        return (
+          <div className='container'>
+            <div className='row'>
+              <HatContainer/>
+            </div>
+            <div className='row'>
+              'TOPS'
+              <TopContainer/>
+            </div>
+            'JACKETS'
+            <JacketContainer/>
+            'BOTTOMS'
+            <BottomContainer/>
+            'SHOES'
+            <ShoeContainer/>
+            <button onClick={this.props.selectAll}>SELECT ALL</button>
+            <button onClick={this.reroute}>Add to my profile!</button>
+          </div>
+        )
+      }
+    }
   }
-}
 //get rid of
 function mapStateToProps(state) {
   return {
@@ -68,7 +75,9 @@ function mapStateToProps(state) {
     jackets: state.jackets,
     bottoms: state.bottoms,
     shoes: state.shoes,
-    allSelected: state.allSelected
+    allSelected: state.allSelected,
+
+    currentUserName: state.currentUserName
   }
 }
 //get rid of
