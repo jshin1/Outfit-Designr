@@ -3,6 +3,23 @@ import {connect} from 'react-redux'
 
 class TopPicker extends Component {
 
+  goBack = (array) => {
+    let lastIdx = (array.length - 1)
+    if (this.props.topIndex === 0) {
+      this.props.setTopIndex(lastIdx)
+    } else {
+      this.props.decreaseTopIndex()
+    }
+  }
+
+  goForward = (array) => {
+    if (this.props.topIndex === array.length - 1) {
+      this.props.setTopIndex(0)
+    } else {
+      this.props.increaseTopIndex()
+    }
+  }
+
   showMyTop = () => {
 
     if (this.props.myTops.length > 0) {
@@ -20,11 +37,11 @@ class TopPicker extends Component {
           this.props.displayTop(filteredTops[this.props.topIndex])
           return (
             <div>
-              <button onClick={this.props.decreaseTopIndex}>Previous</button>
+              <button onClick={() => this.goBack(filteredTops)}>Previous</button>
               <div className='tile'>
                 <img src={filteredTops[this.props.topIndex].image_url} />
               </div>
-              <button onClick={this.props.increaseTopIndex}>Next</button>
+              <button onClick={() => this.goForward(filteredTops)}>Next</button>
             </div>
           )
         }
@@ -81,12 +98,11 @@ class TopPicker extends Component {
 
           return (
             <div>
-              <p>hi</p>
-              <button onClick={this.props.decreaseTopIndex}>Previous</button>
+              <button onClick={() => this.goBack(filteredTops)}>Previous</button>
               <div className='tile'>
                 <img src={filteredTops[this.props.topIndex].image_url} />
               </div>
-              <button onClick={this.props.increaseTopIndex}>Next</button>
+              <button onClick={() => this.goForward(filteredTops)}>Next</button>
             </div>
           )
         }
@@ -123,12 +139,11 @@ class TopPicker extends Component {
 
           return (
             <div>
-              <p>hi</p>
-              <button onClick={this.props.decreaseTopIndex}>Previous</button>
+              <button onClick={() => this.goBack(filteredTops)}>Previous</button>
               <div className='tile'>
                 <img src={filteredTops[this.props.topIndex].image_url} />
               </div>
-              <button onClick={this.props.increaseTopIndex}>Next</button>
+              <button onClick={() => this.goForward(filteredTops)}>Next</button>
             </div>
           )
         }
@@ -136,11 +151,11 @@ class TopPicker extends Component {
       this.props.displayTop(this.props.myTops[this.props.topIndex])
       return (
         <div>
-          <button onClick={this.props.decreaseTopIndex}>Previous</button>
+          <button onClick={() => this.goBack(this.props.myTops)}>Previous</button>
           <div className='tile'>
             <img src={this.props.myTops[this.props.topIndex].image_url} />
           </div>
-          <button onClick={this.props.increaseTopIndex}>Next</button>
+          <button onClick={() => this.goForward(this.props.myTops)}>Next</button>
         </div>
       )}
     }
@@ -172,7 +187,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     displayTop: (data) => dispatch({type: 'DISPLAY_TOP', payload: data}),
     decreaseTopIndex: (data) => dispatch({type: 'DECREASE_TOP_INDEX', payload: data}),
-    increaseTopIndex: (data) => dispatch({type: 'INCREASE_TOP_INDEX', payload: data})
+    increaseTopIndex: (data) => dispatch({type: 'INCREASE_TOP_INDEX', payload: data}),
+    setTopIndex: (data) => dispatch({type: 'SET_TOP_INDEX', payload: data})
   }
 }
 

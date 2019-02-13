@@ -3,6 +3,23 @@ import {connect} from 'react-redux'
 
 class JacketPicker extends Component {
 
+  goBack = (array) => {
+    let lastIdx = (array.length - 1)
+    if (this.props.jacketIndex === 0) {
+      this.props.setJacketIndex(lastIdx)
+    } else {
+      this.props.decreaseJacketIndex()
+    }
+  }
+
+  goForward = (array) => {
+    if (this.props.jacketIndex === array.length - 1) {
+      this.props.setJacketIndex(0)
+    } else {
+      this.props.increaseJacketIndex()
+    }
+  }
+
   showMyJacket = () => {
 
     if (this.props.myJackets.length > 0) {
@@ -20,11 +37,11 @@ class JacketPicker extends Component {
           this.props.displayJacket(filteredJackets[this.props.jacketIndex])
           return (
             <div>
-              <button onClick={this.props.decreaseJacketIndex}>Previous</button>
+              <button onClick={() => this.goBack(filteredJackets)}>Previous</button>
               <div className='tile'>
                 <img src={filteredJackets[this.props.jacketIndex].image_url} />
               </div>
-              <button onClick={this.props.increaseJacketIndex}>Next</button>
+              <button onClick={() => this.goForward(filteredJackets)}>Next</button>
             </div>
           )
         }
@@ -81,12 +98,11 @@ class JacketPicker extends Component {
 
           return (
             <div>
-              <p>hi</p>
-              <button onClick={this.props.decreaseJacketIndex}>Previous</button>
+              <button onClick={() => this.goBack(filteredJackets)}>Previous</button>
               <div className='tile'>
                 <img src={filteredJackets[this.props.jacketIndex].image_url} />
               </div>
-              <button onClick={this.props.increaseJacketIndex}>Next</button>
+              <button onClick={() => this.goForward(filteredJackets)}>Next</button>
             </div>
           )
         }
@@ -123,12 +139,11 @@ class JacketPicker extends Component {
 
           return (
             <div>
-              <p>hi</p>
-              <button onClick={this.props.decreaseJacketIndex}>Previous</button>
+              <button onClick={() => this.goBack(filteredJackets)}>Previous</button>
               <div className='tile'>
                 <img src={filteredJackets[this.props.jacketIndex].image_url} />
               </div>
-              <button onClick={this.props.increaseJacketIndex}>Next</button>
+              <button onClick={() => this.goForward(filteredJackets)}>Next</button>
             </div>
           )
         }
@@ -136,11 +151,11 @@ class JacketPicker extends Component {
       this.props.displayJacket(this.props.myJackets[this.props.jacketIndex])
       return (
         <div>
-          <button onClick={this.props.decreaseJacketIndex}>Previous</button>
+          <button onClick={() => this.goBack(this.props.myJackets)}>Previous</button>
           <div className='tile'>
             <img src={this.props.myJackets[this.props.jacketIndex].image_url} />
           </div>
-          <button onClick={this.props.increaseJacketIndex}>Next</button>
+          <button onClick={() => this.goForward(this.props.myJackets)}>Next</button>
         </div>
       )}
     }
@@ -172,7 +187,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     displayJacket: (data) => dispatch({type: 'DISPLAY_JACKET', payload: data}),
     decreaseJacketIndex: (data) => dispatch({type: 'DECREASE_JACKET_INDEX', payload: data}),
-    increaseJacketIndex: (data) => dispatch({type: 'INCREASE_JACKET_INDEX', payload: data})
+    increaseJacketIndex: (data) => dispatch({type: 'INCREASE_JACKET_INDEX', payload: data}),
+    setJacketIndex: (data) => dispatch({type: 'SET_JACKET_INDEX', payload: data})
   }
 }
 

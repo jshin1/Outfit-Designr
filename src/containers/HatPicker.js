@@ -98,7 +98,6 @@ class HatPicker extends Component {
 
           return (
             <div>
-              <p>hi</p>
               <button onClick={() => this.goBack(filteredHats)}>Previous</button>
               <div className='tile'>
                 <img src={filteredHats[this.props.hatIndex].image_url} />

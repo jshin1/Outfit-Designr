@@ -52,11 +52,15 @@ function reducer(state=initialState, action) {
       return {...state, topIndex: state.topIndex + 1}
     case 'DECREASE_TOP_INDEX':
       return {...state, topIndex: state.topIndex - 1}
+    case 'SET_TOP_INDEX':
+      return {...state, topIndex: action.payload}
 
     case 'INCREASE_JACKET_INDEX':
       return {...state, jacketIndex: state.jacketIndex + 1}
     case 'DECREASE_JACKET_INDEX':
       return {...state, jacketIndex: state.jacketIndex - 1}
+    case 'SET_JACKET_INDEX':
+      return {...state, jacketIndex: action.payload}
 
     case 'INCREASE_BOTTOM_INDEX':
       return {...state, bottomIndex: state.bottomIndex + 1}

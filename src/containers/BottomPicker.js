@@ -90,7 +90,6 @@ class BottomPicker extends Component {
 
           return (
             <div>
-              <p>hi</p>
               <button onClick={this.props.decreaseBottomIndex}>Previous</button>
               <div className='tile'>
                 <img src={filteredBottoms[this.props.bottomIndex].image_url} />
@@ -132,7 +131,6 @@ class BottomPicker extends Component {
 
           return (
             <div>
-              <p>hi</p>
               <button onClick={this.props.decreaseBottomIndex}>Previous</button>
               <div className='tile'>
                 <img src={filteredBottoms[this.props.bottomIndex].image_url} />

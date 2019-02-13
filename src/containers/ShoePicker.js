@@ -80,7 +80,6 @@ class ShoePicker extends Component {
 
           return (
             <div>
-              <p>hi</p>
               <button onClick={this.props.decreaseShoesIndex}>Previous</button>
               <div className='tile'>
                 <img src={filteredShoes[this.props.shoesIndex].image_url} />
@@ -122,7 +121,6 @@ class ShoePicker extends Component {
 
           return (
             <div>
-              <p>hi</p>
               <button onClick={this.props.decreaseShoesIndex}>Previous</button>
               <div className='tile'>
                 <img src={filteredShoes[this.props.shoesIndex].image_url} />
