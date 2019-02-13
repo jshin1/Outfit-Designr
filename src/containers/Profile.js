@@ -26,8 +26,10 @@ class Profile extends Component {
     this.props.history.push('/')
   }
 
-  complementaryColor = () => {
-
+  findComplementaryClothes = () => {
+    if (this.props.currentHat) {
+      let color = this.props.colors.find(color => color.id == this.props.currentHat.color_id)
+    }
   }
 
   matchWithHat = () => {
@@ -35,7 +37,7 @@ class Profile extends Component {
       let color = this.props.colors.find(color => color.id == this.props.currentHat.color_id)
       return(
         <div>
-        {`Hey! You've picked a ${color.name} hat! That goes great with ${color.complementary_color}!`}
+
         </div>
       )
     }
@@ -43,80 +45,18 @@ class Profile extends Component {
 
   matchWithTop = () => {
     if (this.props.currentTop) {
-      let color = this.props.colors.find(color => color.id == this.props.currentTop.color_id)
+      let color = this.props.colors.find(c => c.id == this.props.currentTop.color_id)
       return(
         <div>
-        {`Hey! You've picked a ${color.name} top! That goes great with ${color.complementary_color}!`}
+
         </div>
       )
     }
   }
 
   state = {
-    currentOutfit: []
+    currentOutfit: [],
   }
-  //
-  // saveOutfit = () => {
-  //   console.log('outfit has been saved, bihhhhhh!')
-  //
-  //
-  //
-  //   let clothes = []
-  //   this.state.currentOutfit.map(clothing => {
-  //     console.log(clothing.name)
-  //       return clothes.push({
-  //         'id': clothing.id,
-  //         'name': clothing.name,
-  //         'image_url': clothing.image_url,
-  //         'category_id': clothing.category_id,
-  //         'color_id': clothing.color_id
-  //       })
-  //     })
-  //
-  //   fetch('http://localhost:3000/api/v1/outfits', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       'user_id': 1,
-  //       'clothes': clothes
-  //       //clothes: [
-  //         // this.props.outfits.map(outfit => {
-  //         //   return outfit.map(clothing => {
-  //         //     return {
-  //         //       'id': clothing.id,
-  //         //       'name': clothing.name,
-  //         //       'image_url': clothing.image_url,
-  //         //       'category_id': clothing.category_id,
-  //         //       'color_id': clothing.color_id
-  //         //     }
-  //         //   })
-  //         // })
-  //       //]
-  //     })
-  //   })
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     console.log(clothes)
-  //     console.log(data)
-  //   })
-  // }
-
-  // findComplementaryColors = () => {
-  //   if (this.props.currentHat) {
-  //     fetch('http://localhost:3000/api/v1/colors')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       let color = data.find(color => color.id === this.props.currentHat.color_id)
-  //       console.log(`Hey! You've picked a ${color.name} hat! That goes great with ${color.complementary_color}!`)
-  //       return (
-  //         this.colorDiv(color.name, color.complementary_color)
-  //       )
-  //     })
-  //   }
-  // }
 
   save = () => {
     fetch('http://localhost:3000/api/v1/outfits', {
@@ -135,6 +75,17 @@ class Profile extends Component {
     .then(data => console.log(data))
   }
 
+
+
+  // matchOutfit = (event) => {
+  //   console.log(event.target.value.toLowerCase());
+  // }
+
+  changeSetting = (event) => {
+    this.props.setPrimaryColor(event)
+    this.props.resetIndex()
+  }
+
   render() {
     return (
       <div>
@@ -145,10 +96,33 @@ class Profile extends Component {
         <Ootd />
 
 {'Please select how you would like to match your outfit: '}
-          <select>
-            <option value='0'>Complementary</option>
-            <option value='1'>Analogous</option>
-            <option value='2'>Triad</option>
+          <select onChange={(event) => this.props.setColorScheme(event)}>
+            <option value='complementary'>Complementary</option>
+            <option value='analogous'>Analogous</option>
+            <option value='triad'>Triad</option>
+          </select> <br />
+{'What would you like your primary color to be?'}
+          <select onChange={(event) => this.changeSetting(event)}>
+            <option value='0'>SHOW ALL</option>
+            <option value='1'>Magenta</option>
+            <option value='2'>Red Magenta</option>
+            <option value='3'>Red</option>
+            <option value='4'>Red Orange</option>
+            <option value='5'>Yellow</option>
+            <option value='6'>Yellow Green</option>
+            <option value='7'>Green</option>
+            <option value='8'>Blue Green</option>
+            <option value='9'>Cyan</option>
+            <option value='10'>Blue</option>
+            <option value='11'>Violet Blue</option>
+            <option value='12'>Violet</option>
+            <option value='13'>Denim</option>
+            <option value='14'>Navy</option>
+            <option value='15'>Burgundy</option>
+            <option value='16'>Olive</option>
+            <option value='17'>White</option>
+            <option value='18'>Grey</option>
+            <option value='19'>Black</option>
           </select>
 
 
@@ -177,7 +151,15 @@ const mapStateToProps = (state) => {
     currentBottom: state.currentBottom,
     currentShoes: state.currentShoes,
 
+    myHats: state.myHats,
+    myTops: state.myTops,
+    myJackets: state.myJackets,
+    myBottoms: state.myBottoms,
+    myShoes: state.myShoes,
+
     colors: state.colors,
+    colorScheme: state.colorScheme,
+    primaryColor: state.primaryColor,
     outfits: state.outfits,
     currentOutfit: state.currentOutfit
   }
@@ -188,7 +170,19 @@ const mapDispatchToProps = (dispatch) => {
     logOut: () => {
       return dispatch({type: 'LOG_OUT', payload: null})},
     setColors: (data) => dispatch({type: 'SET_COLORS', payload: data}),
-    setOutfit: (data) => dispatch({type: 'SET_OUTFIT', payload: data})
+    setOutfit: (data) => dispatch({type: 'SET_OUTFIT', payload: data}),
+    setColorScheme: (event) => dispatch({type: 'SET_COLOR_SCHEME', payload: event.target.value}),
+    setPrimaryColor: (event) => dispatch({type: 'SET_PRIMARY_COLOR', payload: event.target.value}),
+
+    resetIndex: (data) => dispatch({type: 'RESET_INDEX', payload: 0}),
+
+    addHats: (data) => {
+      return dispatch({type: 'ADD_HATS', payload: data })},
+
+    addTops: (data) => dispatch({type: 'ADD_TOPS', payload: data }),
+    addJackets: (data) => dispatch({type: 'ADD_JACKETS', payload: data }),
+    addBottoms: (data) => dispatch({type: 'ADD_BOTTOMS', payload: data }),
+    addShoes: (data) => dispatch({type: 'ADD_SHOES', payload: data })
   }
 }
 

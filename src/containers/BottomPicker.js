@@ -15,21 +15,76 @@ class BottomPicker extends Component {
 
   showMyBottom = () => {
     if (this.props.myBottoms.length > 0) {
-      this.props.displayBottom(this.props.myBottoms[this.state.index])
+      if (this.props.primaryColor != '0' && this.props.colorScheme === 'complementary') {
+
+        let primaryColor = this.props.colors.find(c => c.id == this.props.primaryColor)
+        let secondaryColor = this.props.colors.find(c => c.name == primaryColor.complementary_color)
+        let neutralColors = this.props.colors.filter(c => c.name == 'white' || c.name == 'black' || c.name == 'grey')
+
+        const filteredBottoms = this.props.myBottoms.filter(bottom => bottom.color_id == primaryColor.id || bottom.color_id == secondaryColor.id || bottom.color_id == 17 || bottom.color_id == 18 || bottom.color_id == 19)
+
+        if (filteredBottoms.length > 0) {
+
+          console.log(filteredBottoms);
+          this.props.displayBottom(filteredBottoms[this.props.bottomIndex])
+          return (
+            <div>
+              <button onClick={this.props.decreaseBottomIndex}>Previous</button>
+              <div className='tile'>
+                <img src={filteredBottoms[this.props.bottomIndex].image_url} />
+              </div>
+              <button onClick={this.props.increaseBottomIndex}>Next</button>
+            </div>
+          )
+        }
+      } else if (this.props.primaryColor != '0' && this.props.colorScheme == 'analogous') {
+
+        let primaryColor = this.props.colors.find(c => c.id == this.props.primaryColor)
+        let neutralColors = this.props.colors.filter(c => c.name == 'white' || c.name == 'black' || c.name == 'grey')
+
+        let primaryColorIndex = this.props.schemeColors.findIndex(el => el == primaryColor.name);
+
+        let color1 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex])
+        let color2 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex - 1])
+        let color3 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex + 1])
+        let color4 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex - 2])
+        let color5 = this.props.colors.find(color => color.name == this.props.schemeColors[primaryColorIndex + 2])
+
+        let filteredBottoms = this.props.myBottoms.filter(b => b.color_id == color1.id || b.color_id == color2.id || b.color_id == color3.id || b.color_id == color4.id || b.color_id == color5.id || b.color_id == 17 || b.color_id == 18 || b.color_id == 19)
+
+        if (filteredBottoms.length > 0) {
+
+          this.props.displayBottom(filteredBottoms[this.props.bottomIndex])
+
+          return (
+            <div>
+              <p>hi</p>
+              <button onClick={this.props.decreaseBottomIndex}>Previous</button>
+              <div className='tile'>
+                <img src={filteredBottoms[this.props.bottomIndex].image_url} />
+              </div>
+              <button onClick={this.props.increaseBottomIndex}>Next</button>
+            </div>
+          )
+        }
+      } else {
+      this.props.displayBottom(this.props.myBottoms[this.props.bottomIndex])
       return (
-        <div className='tile'>
-          <img src={this.props.myBottoms[this.state.index].image_url} />
+        <div>
+          <button onClick={this.props.decreaseBottomIndex}>Previous</button>
+          <div className='tile'>
+            <img src={this.props.myBottoms[this.props.bottomIndex].image_url} />
+          </div>
+          <button onClick={this.props.increaseBottomIndex}>Next</button>
         </div>
-      )
+      )}
     }
   }
 
   render() {
     return (
       <div>
-        <button>Previous</button>
         {this.showMyBottom()}
-        <button onClick={this.rotateBottoms}>Next</button>
       </div>
     );
   }
@@ -39,13 +94,20 @@ class BottomPicker extends Component {
 const mapStateToProps = (state) => {
   return {
     myBottoms: state.myBottoms,
-    currentBottom: state.currentBottom
+    currentBottom: state.currentBottom,
+    schemeColors: state.schemeColors,
+    primaryColor: state.primaryColor,
+    colors: state.colors,
+    colorScheme: state.colorScheme,
+    bottomIndex: state.bottomIndex
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    displayBottom: (data) => dispatch({type: 'DISPLAY_BOTTOM', payload: data})
+    displayBottom: (data) => dispatch({type: 'DISPLAY_BOTTOM', payload: data}),
+    decreaseBottomIndex: (data) => dispatch({type: 'DECREASE_BOTTOM_INDEX', payload: data}),
+    increaseBottomIndex: (data) => dispatch({type: 'INCREASE_BOTTOM_INDEX', payload: data})
   }
 }
 

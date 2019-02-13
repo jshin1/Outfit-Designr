@@ -22,9 +22,7 @@ function ContainedButtons(props) {
       <Button variant="contained" color="primary" className={classes.button}>
         Primary
       </Button>
-      <Button variant="contained" color="secondary" className={classes.button}>
-        Secondary
-      </Button>
+
       <Button variant="contained" color="secondary" disabled className={classes.button}>
         Disabled
       </Button>
