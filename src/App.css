@@ -247,3 +247,14 @@ div.home {
 .home .login-form {
   padding-top: 50px;
 }
+
+.profile-content {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.inspiration img {
+  width: 65%;
+}

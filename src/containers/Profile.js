@@ -185,9 +185,8 @@ class Profile extends Component {
     } else {
       return (
         <Segment className='cheese' id='profile'>
-          <h1>{`Welcome to your DESIGN PORTAL, ${this.props.currentUserName}`}</h1>
           <Header as='h2' className='textstyle'>{`Welcome to your Design Portal, ${this.props.currentUserName}`}</Header>
-
+          <br />
           <Message color='black'>
             <Message.Header >Instructions</Message.Header> <br />
               {'Please select how you would like to match your outfit:'} <br />
@@ -223,14 +222,28 @@ class Profile extends Component {
 
 
 
+          <div className="profile-content">
+
+              <div className='inspiration'>
+                <Header as='h2' className='textstyle'>Inspiration #1</Header>
+              <img src='https://images.unsplash.com/photo-1542838775-551ba96569a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80' />
+              </div>
+
+            <div className='pickers'>
+              <HatPicker />
+              <TopPicker />
+              <JacketPicker />
+              <BottomPicker />
+              <ShoePicker />
+              </div>
+
+              <div className='inspiration'>
+                <Header as='h2' className='textstyle'>Inspiration #2</Header>
+              <img src='https://images.unsplash.com/photo-1456444029056-7dfaeeb83a19?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80' />
+              </div>
+        </div>
 
 
-
-          <HatPicker />
-          <TopPicker />
-          <JacketPicker />
-          <BottomPicker />
-          <ShoePicker />
 
           <Segment inverted>
             <Button inverted color='orange' onClick={this.save}>Save Outfit</Button>
