@@ -43,7 +43,7 @@ class Gallery extends Component {
       )
     } else {
       return (
-        <Segment className='cheese'>
+        <Segment className='cheese' id='gallery'>
           <Header as='h2' className='textstyle'>GALLERY</Header>
           {this.props.outfits.length > 0 ? this.showOutfits() : <h4>no outfits found</h4>}
         </Segment>

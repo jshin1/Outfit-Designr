@@ -49,7 +49,7 @@ class MainContainer extends Component {
       } else {
         return (
           <div>
-          <Segment className='cheese'>
+          <Segment className='cheese' id='main'>
             <Header as='h2' className='textstyle'>HATS</Header>
             <div className='row'>
               <HatContainer/>

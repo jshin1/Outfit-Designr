@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 
+import {Segment, Header} from 'semantic-ui-react'
+
 class About extends Component {
 
   render() {
     return (
-      <div className='container'>
-        <div className='row'>
-          <div className='col-6'>
-            <img src='https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBTgikj.img?h=624&w=624&m=6&q=60&o=f&l=f&x=996&y=441' />
-          </div>
-          <div className='col-6'>
-            <img src='https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBTgikj.img?h=624&w=624&m=6&q=60&o=f&l=f&x=996&y=441' />
-          </div>
-        </div>
-      </div>
+
+      <Segment className='cheese' id='about'>
+        <Header as='h2' className='textstyle'>ABOUT</Header>
+        <img className='wheel' src='https://1.bp.blogspot.com/-AxRd0J6IncI/Vqe0uEUjgjI/AAAAAAAAJOw/ANepkB3-2qo/s1600/astounding-color-wheel-analogous-color-scheme-new-at-homes-gallery-ideas.jpg' />
+      </Segment>
+
     );
   }
 

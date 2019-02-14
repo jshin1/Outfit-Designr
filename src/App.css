@@ -39,6 +39,22 @@
 
 }
 
+#main.cheese {
+  border: 1em solid #fbbd08;
+}
+
+#profile.cheese {
+  border: 1em solid #f2711c;
+}
+
+#gallery.cheese {
+  border: 1em solid #21ba45;
+}
+
+#about.cheese {
+  border: 1em solid #2185d0;
+}
+
 .hats {
   display: flex;
   flex-direction: row;
@@ -200,6 +216,7 @@ div.home {
 
 .wheel {
   max-height: 700px;
+  border: 3px solid;
 }
 
 .outfit {

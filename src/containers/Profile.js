@@ -184,7 +184,7 @@ class Profile extends Component {
       )
     } else {
       return (
-        <Segment className='cheese'>
+        <Segment className='cheese' id='profile'>
           <h1>{`Welcome to your DESIGN PORTAL, ${this.props.currentUserName}`}</h1>
           <Header as='h2' className='textstyle'>{`Welcome to your Design Portal, ${this.props.currentUserName}`}</Header>
 
