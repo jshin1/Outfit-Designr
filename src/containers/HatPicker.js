@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 
-import { Card } from 'semantic-ui-react'
+import { Card, Icon } from 'semantic-ui-react'
 
 class HatPicker extends Component {
 
@@ -38,13 +38,12 @@ class HatPicker extends Component {
           console.log(filteredHats);
           this.props.displayHat(filteredHats[this.props.hatIndex])
           return (
-            <div>
-              <button onClick={() => this.goBack(filteredHats)}>Previous</button>
+            <div className='profilehat'>
+              <Icon name='arrow alternate circle left' color={primaryColor.name} size='huge' onClick={() => this.goBack(filteredHats)}/>
               <div className='tile'>
-                <Card color='red' image={filteredHats[this.props.hatIndex].image_url} />
                 <img src={filteredHats[this.props.hatIndex].image_url} />
               </div>
-              <button onClick={() => this.goForward(filteredHats)}>Next</button>
+              <Icon name='arrow alternate circle right' color={primaryColor.name} size='huge' onClick={() => this.goForward(filteredHats)}/>
             </div>
           )
         }
@@ -100,12 +99,12 @@ class HatPicker extends Component {
           this.props.displayHat(filteredHats[this.props.hatIndex])
 
           return (
-            <div>
-              <button onClick={() => this.goBack(filteredHats)}>Previous</button>
+            <div className='profilehat'>
+              <Icon name='arrow alternate circle left' color={primaryColor.name} size='huge' onClick={() => this.goBack(filteredHats)}/>
               <div className='tile'>
                 <img src={filteredHats[this.props.hatIndex].image_url} />
               </div>
-              <button onClick={() => this.goForward(filteredHats)}>Next</button>
+              <Icon name='arrow alternate circle right' color={primaryColor.name} size='huge' onClick={() => this.goForward(filteredHats)}/>
             </div>
           )
         }
@@ -141,12 +140,12 @@ class HatPicker extends Component {
           this.props.displayHat(filteredHats[this.props.hatIndex])
 
           return (
-            <div>
-              <button onClick={() => this.goBack(filteredHats)}>Previous</button>
+            <div className='profilehat'>
+              <Icon name='arrow alternate circle left' color={primaryColor.name} size='huge' onClick={() => this.goBack(filteredHats)}/>
               <div className='tile'>
                 <img src={filteredHats[this.props.hatIndex].image_url} />
               </div>
-              <button onClick={() => this.goForward(filteredHats)}>Next</button>
+              <Icon name='arrow alternate circle right' color={primaryColor.name} size='huge' onClick={() => this.goForward(filteredHats)}/>
             </div>
           )
         }
@@ -154,12 +153,12 @@ class HatPicker extends Component {
       } else {
       this.props.displayHat(this.props.myHats[this.props.hatIndex])
       return (
-        <div>
-          <button onClick={() => this.goBack(this.props.myHats)}>Previous</button>
+        <div className='profilehat'>
+          <Icon name='arrow alternate circle left' size='huge' onClick={() => this.goBack(this.props.myHats)}/>
           <div className='tile'>
             <img src={this.props.myHats[this.props.hatIndex].image_url} />
           </div>
-          <button onClick={() => this.goForward(this.props.myHats)}>Next</button>
+          <Icon name='arrow alternate circle right' size='huge' onClick={() => this.goForward(this.props.myHats)}/>
         </div>
       )}
     }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 
+import { Card, Icon } from 'semantic-ui-react'
+
 class TopPicker extends Component {
 
   goBack = (array) => {
@@ -36,12 +38,12 @@ class TopPicker extends Component {
           console.log(filteredTops);
           this.props.displayTop(filteredTops[this.props.topIndex])
           return (
-            <div>
-              <button onClick={() => this.goBack(filteredTops)}>Previous</button>
+            <div className='profiletop'>
+              <Icon name='arrow alternate circle left' color={primaryColor.name} size='huge' onClick={() => this.goBack(filteredTops)}/>
               <div className='tile'>
                 <img src={filteredTops[this.props.topIndex].image_url} />
               </div>
-              <button onClick={() => this.goForward(filteredTops)}>Next</button>
+              <Icon name='arrow alternate circle right' color={primaryColor.name} size='huge' onClick={() => this.goForward(filteredTops)}/>
             </div>
           )
         }
@@ -97,12 +99,12 @@ class TopPicker extends Component {
           this.props.displayTop(filteredTops[this.props.topIndex])
 
           return (
-            <div>
-              <button onClick={() => this.goBack(filteredTops)}>Previous</button>
+            <div className='profiletop'>
+              <Icon name='arrow alternate circle left' color={primaryColor.name} size='huge' onClick={() => this.goBack(filteredTops)}/>
               <div className='tile'>
                 <img src={filteredTops[this.props.topIndex].image_url} />
               </div>
-              <button onClick={() => this.goForward(filteredTops)}>Next</button>
+              <Icon name='arrow alternate circle right' color={primaryColor.name} size='huge' onClick={() => this.goForward(filteredTops)}/>
             </div>
           )
         }
@@ -138,24 +140,24 @@ class TopPicker extends Component {
           this.props.displayTop(filteredTops[this.props.topIndex])
 
           return (
-            <div>
-              <button onClick={() => this.goBack(filteredTops)}>Previous</button>
+            <div className='profiletop'>
+              <Icon name='arrow alternate circle left' color={primaryColor.name} size='huge' onClick={() => this.goBack(filteredTops)}/>
               <div className='tile'>
                 <img src={filteredTops[this.props.topIndex].image_url} />
               </div>
-              <button onClick={() => this.goForward(filteredTops)}>Next</button>
+              <Icon name='arrow alternate circle right' color={primaryColor.name} size='huge' onClick={() => this.goForward(filteredTops)}/>
             </div>
           )
         }
       } else {
       this.props.displayTop(this.props.myTops[this.props.topIndex])
       return (
-        <div>
-          <button onClick={() => this.goBack(this.props.myTops)}>Previous</button>
+        <div className='profiletop'>
+          <Icon name='arrow alternate circle left' size='huge' onClick={() => this.goBack(this.props.myTops)}/>
           <div className='tile'>
             <img src={this.props.myTops[this.props.topIndex].image_url} />
           </div>
-          <button onClick={() => this.goForward(this.props.myTops)}>Next</button>
+          <Icon name='arrow alternate circle right' size='huge' onClick={() => this.goForward(this.props.myTops)}/>
         </div>
       )}
     }

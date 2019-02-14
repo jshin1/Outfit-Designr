@@ -19,7 +19,7 @@ const icons = ['home', 'user circle outline', 'shopping basket','save outline', 
 
 class App extends Component {
 
-  state = { activeA: colorsA[0] }
+  state = { activeA: colorsA[2] }
 
   handleAClick = (color) => this.setState({ activeA: color })
 
@@ -43,22 +43,23 @@ class App extends Component {
             <>
 
 
-              {window.location.pathname === "/" ?
-                <div className="floating-nav">
-                  <Menu compact icon='labeled' inverted >
-                    {colorsA.map(c => (
-                      <Menu.Item as={ Link } to={`/${routes[colorsA.indexOf(c)]}`}
-                        key={c}
-                        active={activeA === c}
-                        color={c}
-                        onClick={() => this.handleAClick(c)}
-                        >
-                        <Icon name={`${icons[colorsA.indexOf(c)]}`} />
-                        {names[colorsA.indexOf(c)]}
-                      </Menu.Item>
-                    ))}
-                  </Menu>
-                </div>
+              {this.props.currentUserId === null ?
+                // <div className="floating-nav">
+                //   <Menu compact icon='labeled' inverted >
+                //     {colorsA.map(c => (
+                //       <Menu.Item as={ Link } to={`/${routes[colorsA.indexOf(c)]}`}
+                //         key={c}
+                //         active={activeA === c}
+                //         color={c}
+                //         onClick={() => this.handleAClick(c)}
+                //         >
+                //         <Icon name={`${icons[colorsA.indexOf(c)]}`} />
+                //         {names[colorsA.indexOf(c)]}
+                //       </Menu.Item>
+                //     ))}
+                //   </Menu>
+                // </div>
+                null
               :
               <Menu compact icon='labeled' inverted >
                 {colorsA.map(c => (

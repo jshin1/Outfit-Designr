@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 
+import { Card, Icon } from 'semantic-ui-react'
+
 class JacketPicker extends Component {
 
   goBack = (array) => {
@@ -36,12 +38,12 @@ class JacketPicker extends Component {
           console.log(filteredJackets);
           this.props.displayJacket(filteredJackets[this.props.jacketIndex])
           return (
-            <div>
-              <button onClick={() => this.goBack(filteredJackets)}>Previous</button>
+            <div className='profilejacket'>
+              <Icon name='arrow alternate circle left' color={primaryColor.name} size='huge' onClick={() => this.goBack(filteredJackets)}/>
               <div className='tile'>
                 <img src={filteredJackets[this.props.jacketIndex].image_url} />
               </div>
-              <button onClick={() => this.goForward(filteredJackets)}>Next</button>
+              <Icon name='arrow alternate circle right' color={primaryColor.name} size='huge' onClick={() => this.goForward(filteredJackets)}/>
             </div>
           )
         }
@@ -97,12 +99,12 @@ class JacketPicker extends Component {
           this.props.displayJacket(filteredJackets[this.props.jacketIndex])
 
           return (
-            <div>
-              <button onClick={() => this.goBack(filteredJackets)}>Previous</button>
+            <div className='profilejacket'>
+              <Icon name='arrow alternate circle left' color={primaryColor.name} size='huge' onClick={() => this.goBack(filteredJackets)}/>
               <div className='tile'>
                 <img src={filteredJackets[this.props.jacketIndex].image_url} />
               </div>
-              <button onClick={() => this.goForward(filteredJackets)}>Next</button>
+              <Icon name='arrow alternate circle right' color={primaryColor.name} size='huge' onClick={() => this.goForward(filteredJackets)}/>
             </div>
           )
         }
@@ -138,24 +140,24 @@ class JacketPicker extends Component {
           this.props.displayJacket(filteredJackets[this.props.jacketIndex])
 
           return (
-            <div>
-              <button onClick={() => this.goBack(filteredJackets)}>Previous</button>
+            <div className='profilejacket'>
+              <Icon name='arrow alternate circle left' color={primaryColor.name} size='huge' onClick={() => this.goBack(filteredJackets)}/>
               <div className='tile'>
                 <img src={filteredJackets[this.props.jacketIndex].image_url} />
               </div>
-              <button onClick={() => this.goForward(filteredJackets)}>Next</button>
+              <Icon name='arrow alternate circle right' color={primaryColor.name} size='huge' onClick={() => this.goForward(filteredJackets)}/>
             </div>
           )
         }
       } else {
       this.props.displayJacket(this.props.myJackets[this.props.jacketIndex])
       return (
-        <div>
-          <button onClick={() => this.goBack(this.props.myJackets)}>Previous</button>
+        <div className='profilejacket'>
+          <Icon name='arrow alternate circle left' size='huge' onClick={() => this.goBack(this.props.myJackets)}/>
           <div className='tile'>
             <img src={this.props.myJackets[this.props.jacketIndex].image_url} />
           </div>
-          <button onClick={() => this.goForward(this.props.myJackets)}>Next</button>
+          <Icon name='arrow alternate circle right' size='huge' onClick={() => this.goForward(this.props.myJackets)}/>
         </div>
       )}
     }

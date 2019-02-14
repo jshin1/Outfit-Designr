@@ -1,7 +1,26 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 
+import { Card, Icon } from 'semantic-ui-react'
+
 class ShoePicker extends Component {
+
+  goBack = (array) => {
+    let lastIdx = (array.length - 1)
+    if (this.props.shoesIndex === 0) {
+      this.props.setShoesIndex(lastIdx)
+    } else {
+      this.props.decreaseShoesIndex()
+    }
+  }
+
+  goForward = (array) => {
+    if (this.props.shoesIndex === array.length - 1) {
+      this.props.setShoesIndex(0)
+    } else {
+      this.props.increaseShoesIndex()
+    }
+  }
 
   showMyShoes = () => {
     if (this.props.myShoes.length > 0) {
@@ -18,12 +37,12 @@ class ShoePicker extends Component {
           console.log(filteredShoes);
           this.props.displayShoes(filteredShoes[this.props.shoesIndex])
           return (
-            <div>
-              <button onClick={this.props.decreaseShoesIndex}>Previous</button>
+            <div className='profileshoes'>
+              <Icon name='arrow alternate circle left' color={primaryColor.name} size='huge' onClick={() => this.goBack(filteredShoes)}/>
               <div className='tile'>
                 <img src={filteredShoes[this.props.shoesIndex].image_url} />
               </div>
-              <button onClick={this.props.increaseShoesIndex}>Next</button>
+              <Icon name='arrow alternate circle right' color={primaryColor.name} size='huge' onClick={() => this.goForward(filteredShoes)}/>
             </div>
           )
         }
@@ -79,12 +98,12 @@ class ShoePicker extends Component {
           this.props.displayShoes(filteredShoes[this.props.shoesIndex])
 
           return (
-            <div>
-              <button onClick={this.props.decreaseShoesIndex}>Previous</button>
+            <div className='profileshoes'>
+              <Icon name='arrow alternate circle left' color={primaryColor.name} size='huge' onClick={() => this.goBack(filteredShoes)}/>
               <div className='tile'>
                 <img src={filteredShoes[this.props.shoesIndex].image_url} />
               </div>
-              <button onClick={this.props.increaseShoesIndex}>Next</button>
+              <Icon name='arrow alternate circle right' color={primaryColor.name} size='huge' onClick={() => this.goForward(filteredShoes)}/>
             </div>
           )
         }
@@ -120,24 +139,24 @@ class ShoePicker extends Component {
           this.props.displayShoes(filteredShoes[this.props.shoesIndex])
 
           return (
-            <div>
-              <button onClick={this.props.decreaseShoesIndex}>Previous</button>
+            <div className='profileshoes'>
+              <Icon name='arrow alternate circle left' color={primaryColor.name} size='huge' onClick={() => this.goBack(filteredShoes)}/>
               <div className='tile'>
                 <img src={filteredShoes[this.props.shoesIndex].image_url} />
               </div>
-              <button onClick={this.props.increaseShoesIndex}>Next</button>
+              <Icon name='arrow alternate circle right' color={primaryColor.name} size='huge' onClick={() => this.goForward(filteredShoes)}/>
             </div>
           )
         }
       } else {
       this.props.displayShoes(this.props.myShoes[this.props.shoesIndex])
       return (
-        <div>
-          <button onClick={this.props.decreaseShoesIndex}>Previous</button>
+        <div className='profileshoes'>
+          <Icon name='arrow alternate circle left' size='huge' onClick={() => this.goBack(this.props.myShoes)}/>
           <div className='tile'>
             <img src={this.props.myShoes[this.props.shoesIndex].image_url} />
           </div>
-          <button onClick={this.props.increaseShoesIndex}>Next</button>
+          <Icon name='arrow alternate circle right' size='huge' onClick={() => this.goForward(this.props.myShoes)}/>
         </div>
       )}
     }
@@ -169,7 +188,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     displayShoes: (data) => dispatch({type: 'DISPLAY_SHOES', payload: data}),
     decreaseShoesIndex: (data) => dispatch({type: 'DECREASE_SHOES_INDEX', payload: data}),
-    increaseShoesIndex: (data) => dispatch({type: 'INCREASE_SHOES_INDEX', payload: data})
+    increaseShoesIndex: (data) => dispatch({type: 'INCREASE_SHOES_INDEX', payload: data}),
+    setShoesIndex: (data) => dispatch({type: 'SET_SHOES_INDEX', payload: data})
   }
 }
 

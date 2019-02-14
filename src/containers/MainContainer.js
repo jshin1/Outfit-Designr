@@ -10,6 +10,8 @@ import {connect} from 'react-redux'
 import {clothes} from '../apiURLs'
 import '../App.css';
 
+import { Divider, Header, Image, Segment, Button } from 'semantic-ui-react'
+
 
 class MainContainer extends Component {
 
@@ -46,23 +48,47 @@ class MainContainer extends Component {
         )
       } else {
         return (
-          <div className='container'>
+          <div>
+          <Segment className='cheese'>
+            <Header as='h2' className='textstyle'>HATS</Header>
             <div className='row'>
               <HatContainer/>
             </div>
+
+            <Divider section />
+
+            <Header as='h2' className='textstyle'>TOPS</Header>
             <div className='row'>
-              'TOPS'
               <TopContainer/>
             </div>
-            'JACKETS'
-            <JacketContainer/>
-            'BOTTOMS'
-            <BottomContainer/>
-            'SHOES'
-            <ShoeContainer/>
-            <button onClick={this.props.selectAll}>SELECT ALL</button>
-            <button onClick={this.reroute}>Add to my profile!</button>
-          </div>
+
+            <Divider section />
+
+            <Header as='h2' className='textstyle'>JACKETS</Header>
+            <div className='row'>
+              <JacketContainer/>
+            </div>
+
+            <Divider section />
+
+            <Header as='h2' className='textstyle'>PANTS</Header>
+            <div className='row'>
+              <BottomContainer/>
+            </div>
+
+            <Divider section />
+
+            <Header as='h2' className='textstyle'>SHOES</Header>
+            <div className='row'>
+              <ShoeContainer/>
+            </div>
+
+          </Segment>
+          <Segment inverted>
+            <Button inverted color='yellow' onClick={this.props.selectAll}>Select All</Button>
+            <Button inverted color='yellow' onClick={this.reroute}>Go To Profile</Button>
+          </Segment>
+        </div>
         )
       }
     }

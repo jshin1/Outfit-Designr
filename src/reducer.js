@@ -72,11 +72,15 @@ function reducer(state=initialState, action) {
       return {...state, bottomIndex: state.bottomIndex + 1}
     case 'DECREASE_BOTTOM_INDEX':
       return {...state, bottomIndex: state.bottomIndex - 1}
+    case 'SET_BOTTOM_INDEX':
+      return {...state, bottomIndex: action.payload}
 
     case 'INCREASE_SHOES_INDEX':
       return {...state, shoesIndex: state.shoesIndex + 1}
     case 'DECREASE_SHOES_INDEX':
       return {...state, shoesIndex: state.shoesIndex - 1}
+    case 'SET_SHOES_INDEX':
+      return {...state, shoesIndex: action.payload}
 
     case 'RESET_INDEX':
       return {...state, hatIndex: action.payload, topIndex: action.payload, jacketIndex: action.payload, bottomIndex: action.payload, shoesIndex: action.payload}

@@ -6,13 +6,24 @@
   text-align: center;
 }
 
+.container {
+  /* padding-top: 100px; */
+}
+
+.tile {
+  height: 175px;
+  width: 175px;
+}
+
 .tile h2{
   font-size: 20px;
 }
 
 .tile img {
-  width: 150px;
-  height: auto;
+  /* width: 150px;
+  height: auto; */
+  max-height: 100%;
+  max-width: 100%;
 }
 
 /* .container {
@@ -22,30 +33,79 @@
   justify-content: space-between;
 } */
 
+.ui.segment.cheese {
+  padding: 1em;
+  border: 1em solid #000;
+
+}
+
 .hats {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .tops {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .jackets {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .bottoms {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .shoes {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
+
+.profilehat {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.profiletop {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.profilejacket {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.profilebottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.profileshoes {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.outfit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
 
 img {
   /* border:solid 1px red; margin:10px; */
@@ -53,6 +113,49 @@ img {
 
 .selected {
    /* box-shadow:0px 12px 22px 1px #333; */
+}
+
+body {
+
+  background-color: #fafafa;
+}
+
+.ui.segment {
+  background-color: #fbfbfb;
+}
+
+.ui.header.textstyle {
+  color: #fff;
+  font-size: 40px;
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+}
+
+h1.textstyle {
+  color: #fff;
+  font-size: 100px;
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
 }
 
 .floating-nav {
@@ -70,7 +173,7 @@ img {
 }
 
 div.home {
-  background-image: url('https://images.unsplash.com/photo-1547597466-50406ff4f363?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80');
+  background-image: url('./home-bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -90,7 +193,7 @@ div.home {
 
 .home h1 {
   font-size: 100px;
-  /* color: white; */
+  color: white;
   text-align: center;
   /* margin-top: 10%; */
 }
@@ -113,4 +216,17 @@ div.home {
   background-color: transparent;
   top: 10%;
   margin: 0 auto;
+}
+
+.home .ui.placeholder.segment {
+  width: 65%;
+  margin: 0 auto;
+}
+
+.home h1 {
+  margin-bottom: 140px;
+}
+
+.home .login-form {
+  padding-top: 50px;
 }

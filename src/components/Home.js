@@ -8,7 +8,7 @@ class Home extends Component {
   render() {
     return (
       <div className='home'>
-        <h1>OUTFIT DESIGNR</h1>
+        <h1 className='textstyle'>OUTFIT DESIGNR</h1>
 
           <Segment placeholder>
             <Grid columns={2} relaxed='very' stackable>

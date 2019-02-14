@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
+import { Card, Icon, Segment, Header } from 'semantic-ui-react'
+
 class Gallery extends Component {
 
   componentDidMount() {
@@ -18,11 +20,10 @@ class Gallery extends Component {
     }
 
   showOutfits = () => {
-    debugger
     return this.props.outfits.map(outfit => {
       return (
         <div className='outfit'>
-          <button type='submit' onClick={() => this.deleteOutfit(outfit.id)}>Delete Outfit</button>
+          <Icon name='trash alternate' size='large' onClick={() => this.deleteOutfit(outfit.id)} />
           {outfit.clothes.map(clothing => {
             return(
               <div className='tile'>
@@ -42,9 +43,10 @@ class Gallery extends Component {
       )
     } else {
       return (
-        <div>
+        <Segment className='cheese'>
+          <Header as='h2' className='textstyle'>GALLERY</Header>
           {this.props.outfits.length > 0 ? this.showOutfits() : <h4>no outfits found</h4>}
-        </div>
+        </Segment>
       )
     }
   }

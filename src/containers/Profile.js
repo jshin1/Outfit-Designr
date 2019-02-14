@@ -7,7 +7,7 @@ import BottomPicker from './BottomPicker'
 import ShoePicker from './ShoePicker'
 import Ootd from '../components/Ootd'
 
-import {Dropdown, Button, Segment} from 'semantic-ui-react'
+import {Dropdown, Button, Segment, Message, Header} from 'semantic-ui-react'
 
 const schemeOptions = [
   {key: 'Complementary', value: 'complementary', text: 'Complementary'},
@@ -175,12 +175,6 @@ class Profile extends Component {
     }
   }
 
-  testFunction = (event) => {
-    console.log(event);
-    console.log(event.target);
-  }
-
-
 
   render() {
 
@@ -190,41 +184,48 @@ class Profile extends Component {
       )
     } else {
       return (
-        <div>
+        <Segment className='cheese'>
           <h1>{`Welcome to your DESIGN PORTAL, ${this.props.currentUserName}`}</h1>
+          <Header as='h2' className='textstyle'>{`Welcome to your Design Portal, ${this.props.currentUserName}`}</Header>
 
-          <button type='submit' onClick={this.reroute}>Log Out</button>
+          <Message color='black'>
+            <Message.Header >Instructions</Message.Header> <br />
+              {'Please select how you would like to match your outfit:'} <br />
+                <select onChange={(event) => this.props.setColorScheme(event)}>
+                  <option value='complementary'>Complementary</option>
+                  <option value='analogous'>Analogous</option>
+                  <option value='triad'>Triad</option>
+                </select> <br /><br />
+
+              {'What would you like your primary color to be?'} <br />
+                <select onChange={(event) => this.changeSetting(event)}>
+                  <option value='0'>SHOW ALL</option>
+                  <option value='1'>Magenta</option>
+                  <option value='2'>Red Magenta</option>
+                  <option value='3'>Red</option>
+                  <option value='4'>Red Orange</option>
+                  <option value='5'>Yellow</option>
+                  <option value='6'>Yellow Green</option>
+                  <option value='7'>Green</option>
+                  <option value='8'>Blue Green</option>
+                  <option value='9'>Cyan</option>
+                  <option value='10'>Blue</option>
+                  <option value='11'>Violet Blue</option>
+                  <option value='12'>Violet</option>
+                </select>
+
+                <br />
+                <br />
+                {this.colorRecommender()}
+          </Message>
+          <br /><br />
 
 
-  {'Please select how you would like to match your outfit: '}
-            <select onChange={(event) => this.props.setColorScheme(event)}>
-              <option value='complementary'>Complementary</option>
-              <option value='analogous'>Analogous</option>
-              <option value='triad'>Triad</option>
-            </select> <br />
-  {'What would you like your primary color to be?'}
-            <select onChange={(event) => this.changeSetting(event)}>
-              <option value='0'>SHOW ALL</option>
-              <option value='1'>Magenta</option>
-              <option value='2'>Red Magenta</option>
-              <option value='3'>Red</option>
-              <option value='4'>Red Orange</option>
-              <option value='5'>Yellow</option>
-              <option value='6'>Yellow Green</option>
-              <option value='7'>Green</option>
-              <option value='8'>Blue Green</option>
-              <option value='9'>Cyan</option>
-              <option value='10'>Blue</option>
-              <option value='11'>Violet Blue</option>
-              <option value='12'>Violet</option>
-            </select>
 
-            {'Please select how you would like to match your outfit: '}
-          <Dropdown placeholder='Complementary' search selection options={schemeOptions} onChange={(event) => this.testFunction(event)} />
-          {'What would you like your primary color to be?'}
-          <Dropdown placeholder='All Colors' search selection options={colorOptions} onChange={(event) => this.testFunction(event)}/>
 
-            {this.colorRecommender()}
+
+
+
           <HatPicker />
           <TopPicker />
           <JacketPicker />
@@ -232,11 +233,10 @@ class Profile extends Component {
           <ShoePicker />
 
           <Segment inverted>
-            <Button inverted color='yellow'>Yellow</Button>
+            <Button inverted color='orange' onClick={this.save}>Save Outfit</Button>
+            <Button inverted color='orange' onClick={this.reroute}>Log Out</Button>
           </Segment>
-
-          <button type='submit' className='btn btn-dark' onClick={this.save}>SAVE THIS OUTFIT, BIHHHHH</button>
-        </div>
+        </Segment>
       )
     }
   }

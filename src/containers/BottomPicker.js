@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 
+import { Card, Icon } from 'semantic-ui-react'
+
 class BottomPicker extends Component {
 
-  state = {
-    index: 0
+  goBack = (array) => {
+    let lastIdx = (array.length - 1)
+    if (this.props.bottomIndex === 0) {
+      this.props.setBottomIndex(lastIdx)
+    } else {
+      this.props.decreaseBottomIndex()
+    }
   }
 
-  rotateBottoms = () => {
-    this.setState(prevState => ({
-      index: prevState.index + 1
-    }))
+  goForward = (array) => {
+    if (this.props.bottomIndex === array.length - 1) {
+      this.props.setBottomIndex(0)
+    } else {
+      this.props.increaseBottomIndex()
+    }
   }
 
   showMyBottom = () => {
@@ -28,12 +37,12 @@ class BottomPicker extends Component {
           console.log(filteredBottoms);
           this.props.displayBottom(filteredBottoms[this.props.bottomIndex])
           return (
-            <div>
-              <button onClick={this.props.decreaseBottomIndex}>Previous</button>
+            <div className='profilebottom'>
+              <Icon name='arrow alternate circle left' color={primaryColor.name} size='huge' onClick={() => this.goBack(filteredBottoms)}/>
               <div className='tile'>
                 <img src={filteredBottoms[this.props.bottomIndex].image_url} />
               </div>
-              <button onClick={this.props.increaseBottomIndex}>Next</button>
+              <Icon name='arrow alternate circle right' color={primaryColor.name} size='huge' onClick={() => this.goForward(filteredBottoms)}/>
             </div>
           )
         }
@@ -89,12 +98,12 @@ class BottomPicker extends Component {
           this.props.displayBottom(filteredBottoms[this.props.bottomIndex])
 
           return (
-            <div>
-              <button onClick={this.props.decreaseBottomIndex}>Previous</button>
+            <div className='profilebottom'>
+              <Icon name='arrow alternate circle left' color={primaryColor.name} size='huge' onClick={() => this.goBack(filteredBottoms)}/>
               <div className='tile'>
                 <img src={filteredBottoms[this.props.bottomIndex].image_url} />
               </div>
-              <button onClick={this.props.increaseBottomIndex}>Next</button>
+              <Icon name='arrow alternate circle right' color={primaryColor.name} size='huge' onClick={() => this.goForward(filteredBottoms)}/>
             </div>
           )
         }
@@ -130,24 +139,24 @@ class BottomPicker extends Component {
           this.props.displayBottom(filteredBottoms[this.props.bottomIndex])
 
           return (
-            <div>
-              <button onClick={this.props.decreaseBottomIndex}>Previous</button>
+            <div className='profilebottom'>
+              <Icon name='arrow alternate circle left' color={primaryColor.name} size='huge' onClick={() => this.goBack(filteredBottoms)}/>
               <div className='tile'>
                 <img src={filteredBottoms[this.props.bottomIndex].image_url} />
               </div>
-              <button onClick={this.props.increaseBottomIndex}>Next</button>
+              <Icon name='arrow alternate circle right' color={primaryColor.name} size='huge' onClick={() => this.goForward(filteredBottoms)}/>
             </div>
           )
         }
       } else {
       this.props.displayBottom(this.props.myBottoms[this.props.bottomIndex])
       return (
-        <div>
-          <button onClick={this.props.decreaseBottomIndex}>Previous</button>
+        <div className='profilebottom'>
+          <Icon name='arrow alternate circle left' size='huge' onClick={() => this.goBack(this.props.myBottoms)}/>
           <div className='tile'>
             <img src={this.props.myBottoms[this.props.bottomIndex].image_url} />
           </div>
-          <button onClick={this.props.increaseBottomIndex}>Next</button>
+          <Icon name='arrow alternate circle right' size='huge' onClick={() => this.goForward(this.props.myBottoms)}/>
         </div>
       )}
     }
@@ -179,7 +188,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     displayBottom: (data) => dispatch({type: 'DISPLAY_BOTTOM', payload: data}),
     decreaseBottomIndex: (data) => dispatch({type: 'DECREASE_BOTTOM_INDEX', payload: data}),
-    increaseBottomIndex: (data) => dispatch({type: 'INCREASE_BOTTOM_INDEX', payload: data})
+    increaseBottomIndex: (data) => dispatch({type: 'INCREASE_BOTTOM_INDEX', payload: data}),
+    setBottomIndex: (data) => dispatch({type: 'SET_BOTTOM_INDEX', payload: data})
   }
 }
 
