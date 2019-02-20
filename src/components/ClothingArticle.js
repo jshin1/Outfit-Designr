@@ -25,11 +25,8 @@ class ClothingArticle extends Component {
       return this.props.hat.map(h => {
           return (
             <div className='tile'>
-              <h2>{h.name}</h2>
-
-
-
-              <img className='img-thumbnail' src={h.image_url} id="hat" onClick={(event) => this.selectClothing(event, h)}/>
+              <h2 id="hat" onClick={(event) => this.selectClothing(event, h)}>{h.name}</h2>
+              <img className='img-thumbnail' src={h.image_url} id="hat" />
             </div>
           )
         })
@@ -37,8 +34,8 @@ class ClothingArticle extends Component {
       return this.props.top.map(t => {
           return (
             <div className='tile'>
-              <h2>{t.name}</h2>
-              <img className='img-thumbnail' src={t.image_url} id="top" onClick={(event) => this.selectClothing(event, t)} />
+              <h2 id="top" onClick={(event) => this.selectClothing(event, t)}>{t.name}</h2>
+              <img className='img-thumbnail' src={t.image_url} />
             </div>
           )
         })
@@ -46,8 +43,8 @@ class ClothingArticle extends Component {
       return this.props.jacket.map(j => {
           return (
             <div className='tile'>
-              <h2>{j.name}</h2>
-              <img className='img-thumbnail' src={j.image_url} id="jacket" onClick={(event) => this.selectClothing(event, j)} />
+              <h2 id="jacket" onClick={(event) => this.selectClothing(event, j)}>{j.name}</h2>
+              <img className='img-thumbnail' src={j.image_url} />
             </div>
           )
         })
@@ -55,8 +52,8 @@ class ClothingArticle extends Component {
       return this.props.bottom.map(b => {
           return (
             <div className='tile'>
-              <h2>{b.name}</h2>
-              <img className='img-thumbnail' src={b.image_url} id="bottom" onClick={(event) => this.selectClothing(event, b)}/>
+              <h2 id="bottom" onClick={(event) => this.selectClothing(event, b)}>{b.name}</h2>
+              <img className='img-thumbnail' src={b.image_url}/>
             </div>
           )
         })
@@ -64,8 +61,8 @@ class ClothingArticle extends Component {
       return this.props.shoes.map(s => {
           return (
             <div className='tile'>
-              <h2>{s.name}</h2>
-              <img className='img-thumbnail' src={s.image_url} id="shoes" onClick={(event) => this.selectClothing(event, s)}/>
+              <h2 id="shoes" onClick={(event) => this.selectClothing(event, s)}>{s.name}</h2>
+              <img className='img-thumbnail' src={s.image_url}/>
             </div>
           )
         })

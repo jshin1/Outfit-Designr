@@ -129,6 +129,16 @@ img {
 
 .selected {
    /* box-shadow:0px 12px 22px 1px #333; */
+   color: #fff;
+   font-size: 30px;
+   -webkit-text-stroke-width: 0.1px;
+   -webkit-text-stroke-color: #fbbd08;
+   text-shadow:
+       3px 3px 0 #fbbd08,
+     -1px -1px 0 #fbbd08,
+      1px -1px 0 #fbbd08,
+      -1px 1px 0 #fbbd08,
+       1px 1px 0 #fbbd08;
 }
 
 body {
