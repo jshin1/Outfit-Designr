@@ -8,7 +8,7 @@ This is a fashion web application that allows users coordinate their outfits bas
 
 React, Redux, JavaScript, Ruby on Rails, Semantic UI, Custom CSS
 
-## Link to Backend
+## Link to Backend Repo
 
 https://github.com/jshin1/Outfit-Designer-API
 
