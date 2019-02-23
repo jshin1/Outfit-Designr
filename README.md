@@ -10,7 +10,7 @@ React, Redux, JavaScript, Ruby on Rails, Semantic UI, Custom CSS
 
 ## Link to Backend Repo
 
-https://github.com/jshin1/Outfit-Designer-API
+https://github.com/jshin1/Outfit-Designr-API
 
 ## Link to Video Demo
 
