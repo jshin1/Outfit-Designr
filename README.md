@@ -2,7 +2,7 @@
 
 ## Project Summary
 
-This is a fashion web application that allows users coordinate their outfits based on a color scheme algorithm.
+This is a fashion web application that allows users to coordinate their outfits based on a color scheme algorithm.
 
 ## Stack
 
