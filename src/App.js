@@ -41,24 +41,7 @@ class App extends Component {
       <div className="App">
           <Router>
             <>
-
-
               {this.props.currentUserId === null ?
-                // <div className="floating-nav">
-                //   <Menu compact icon='labeled' inverted >
-                //     {colorsA.map(c => (
-                //       <Menu.Item as={ Link } to={`/${routes[colorsA.indexOf(c)]}`}
-                //         key={c}
-                //         active={activeA === c}
-                //         color={c}
-                //         onClick={() => this.handleAClick(c)}
-                //         >
-                //         <Icon name={`${icons[colorsA.indexOf(c)]}`} />
-                //         {names[colorsA.indexOf(c)]}
-                //       </Menu.Item>
-                //     ))}
-                //   </Menu>
-                // </div>
                 null
               :
               <Menu compact icon='labeled' inverted >
@@ -75,7 +58,6 @@ class App extends Component {
                 ))}
               </Menu>
               }
-
 
               <Segment>
                 <Route exact path="/" render={() => (this.props.currentUserId !== null ? (<Redirect to="/main"/>) : (<Home/>))}/>

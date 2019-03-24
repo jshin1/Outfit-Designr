@@ -219,9 +219,6 @@ class Profile extends Component {
           </Message>
           <br /><br />
 
-
-
-
           <div className="profile-content">
 
               <div className='inspiration'>
